@@ -1,36 +1,18 @@
 #ifndef __MAZE_MAZE_H__
 #define __MAZE_MAZE_H__
-
+#include <vector>
+#include "maze.h"
+#include <iostream>
+#include <fstream>
 using namespace std;
-
 
 class Maze
 {
-private:
-	const int width=31;
-	const int length=46;
-
-	
 public:
-	 
-	Maze(const int width, const int length, string filename);  //default constructor 
-
-	void ReadMaze();  		//reads the maze text file into array called maze; only need this once
+	Maze();
+	vector <vector<char> > displayMaze(int width, int length, string filename);
 	
-	void updateMaze(int i, int j );  // change the maze array when path changes or robot position changes at position i,j
-	 
-	void displayMaze(char maze[31][46]);  //displays the maze array
-	
-	void IsTarget();
-	
-	void CanMove();
-	
-	 ~Maze();
-	
-
-
-};
-
-
-
+	bool IsWrongPath(int i, int j, vector< vector<char> > maze_arr);
+	bool isObstacle(int i, int j, vector< vector<char> > maze_arr);
+	~Maze();
 #endif // __MAZE_MAZE_H__

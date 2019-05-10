@@ -1,8 +1,7 @@
 #include <iostream>
-#include "maze.h"
+#include "Maze/maze.h"
 #include <fstream>
-
-using namespace std;
+#include <vector>
 
 
 // Symbols:
@@ -16,30 +15,14 @@ using namespace std;
 // '-' = path for tracked robot
 // '+' = overlapping paths
 
+
+size_t width = 31;
+size_t length = 46;
+char maze_arr[width][length]{0};
+
 int main()
 {	//input the maze and ask for start positions
 	
-	// the following indented lines will go into Maze class files...
-						ifstream input;
-						input.open("../maze.txt");
-						if (input.is_open())
-						{
-							char maze_arr[31][46]{0} ;
-							for (int i = 0; i <=31; i++)
-								for (int j=0; j<= 46; j++)
-								{
-									
-									char temp;
-									temp = input.get();
-									maze_arr[i][j] = temp;
-								}
-							input.close();
-						for (int i=0; i<31; i++){ 
-								for (int j=0; j<46; j++){
-								cout << maze_arr[i][j]; // This loop displayes the actual maze characters
-								}
-						}
-						}
 	
 	cout<<"Please enter the start position for the wheeled robot: "<<endl;  
 	// Checking for valid start and goal positions the wheeled robot
@@ -92,6 +75,5 @@ int main()
 	//changeMaze(start_x_tracked, start_y_tracked, char 't' );
 	//changeMaze(target_x_wheeled, target_y_wheeled, char 'p' );
 	//changeMaze(target_x_tracked, target_y_tracked, char 'b' );
-	return 0;
-	}
+	return 0;	
 }

@@ -1,60 +1,48 @@
+#include <vector>
 #include "maze.h"
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+using std::cout;
 
-Maze::Maze(const int width, const int length, string filename) ;
+ 
+vector< vector<char> > Maze::displayMaze(int width, int length, string filename)
 {
 	ifstream input;
-	input.open("../maze.txt");
+	input.open("filename");
 	if (input.is_open())
 	{
-		for (int i = 0; i <=width; i++)
-			for (int j=0; j<= length; j++)
+	vector< vector<char> > maze_arr[31][46]{} ;
+		for (int i = 0; i <=width-1; i++)
+			for (int j=0; j<= length-1; j++)
 			{
 				char temp;
 				temp = input.get();
-				maze[i][j] = temp;
-			}
-		input.close();
+				maze_arr[i][j] = temp;
+				cout << maze_arr[i][j];
 	}
-	return Maze;
+void Maze::isWrongPath(int i, int j, <vector<vector<char>> maze_arr) 
+{
+	maze_arr[i][j] = 'X'
+}
+
+bool Maze::isObstacle(int i, int j, <vector<vector<char>> maze_arr)
+{
+	if (maze_arr[i][j] == "#") ||(maze_arr[i][j] == "X") 
+		return 1;
+	else
+		return 0;	
+}
+
+void maze::CanMove()
+{
+}
 	
-}
- 
-void Maze::displayMaze()
-{
-	for (int i=0; i<width; i++){ 
-		if (i == 0){
-			cout<<"\n";
-			cout << i << " | ";
-			for (int j=0; j<length; j++){
-			cout << maze[i][j]; // This loop displayes the actual maze characters
-			}
-			
-		}
-		else if (i > 0 && i <=9){
-			cout <<"\n" <<i<< " | " ;		// 
-			for (int j=0; j<length; j++){
-				cout << maze[i][j]; // This loop displayes the actual maze characters
-			} 
-		}
-		else{
-			cout << i<<"| ";
-			for (int j=0; j<length; j++){
-				cout << maze[i][j]; // This loop displayes the actual maze characters
-			}
-		}
-		
-	}
-}
-}
-
-void Maze::IsTarget()
+Maze::Maze()
 {
 }
 
-void Maze::CanMove()
+Maze::~Maze()
 {
 }
+
