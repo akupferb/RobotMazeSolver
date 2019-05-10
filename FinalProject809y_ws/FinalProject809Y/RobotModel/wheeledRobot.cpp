@@ -1,5 +1,5 @@
 #include "WheeledRobot.h"
-
+using namespace std;
 WheeledRobot::WheeledRobot()
 {
 }

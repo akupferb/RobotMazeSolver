@@ -1,5 +1,5 @@
 #include "TrackedRobot.h"
-
+using namespace std;
 TrackedRobot::TrackedRobot()
 {
 }

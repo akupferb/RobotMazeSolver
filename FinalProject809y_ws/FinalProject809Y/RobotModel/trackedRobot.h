@@ -6,10 +6,10 @@ class TrackedRobot
 {
 public:
 	TrackedRobot();
-	virtual vector<int> Up(int x, int y) override;
-	virtual vector<int> Down(int x, int y) override;
-	virtual vector<int> Right(int x, int y) override;
-	virtual vector<int> Left(int x, int y) override;
+	virtual std::vector<int> Up(int,int) override {};
+	virtual std::vector<int> Down(int,int) override {};
+	virtual std::vector<int> Right(int,int) override {};
+	virtual std::vector<int> Left(int,int) override {};
 	~TrackedRobot();
 
 };

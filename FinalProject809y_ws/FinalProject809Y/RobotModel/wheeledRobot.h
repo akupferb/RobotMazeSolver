@@ -8,10 +8,10 @@ public:
 	WheeledRobot();
 	int x;
 	int y;
-	virtual vector<int> Up() override;
-	virtual vector<int> Down() override;
-	virtual vector<int> Right() override;
-	virtual vector<int> Left() override;
+	virtual std::vector<int> Up(int,int) override {};
+	virtual std::vector<int> Down(int,int) override {};
+	virtual std::vector<int> Right(int,int) override {};
+	virtual std::vector<int> Left(int,int) override {};
 	~WheeledRobot();
 
 };
