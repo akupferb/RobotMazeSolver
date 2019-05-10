@@ -1,6 +1,7 @@
-#ifndef __ROBOTMODEL_MOBILEROBOT_H__
-#define __ROBOTMODEL_MOBILEROBOT_H__
-
+#ifndef MOBILEROBOT_H
+#define MOBILEROBOT_H
+#include<vector>
+#include<iostream>
 class MobileRobot
 {
 public:
@@ -9,8 +10,8 @@ public:
 	virtual vector<int> Down()=0;
 	virtual vector<int> Right()=0;
 	virtual vector<int> Left()=0;
-	virtual ~MobileRobot();
+	~MobileRobot();
 
 };
 
-#endif // __ROBOTMODEL_MOBILEROBOT_H__
+#endif // MOBILEROBOT_H

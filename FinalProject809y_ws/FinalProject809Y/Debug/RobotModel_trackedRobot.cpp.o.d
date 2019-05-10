@@ -1,4 +1,4 @@
-Debug/RobotModel_trackedRobot.cpp.o: RobotModel/trackedRobot.cpp \
- RobotModel/trackedRobot.h
+Debug/RobotModel_TrackedRobot.cpp.o: RobotModel/TrackedRobot.cpp \
+ RobotModel/TrackedRobot.h
 
-RobotModel/trackedRobot.h:
+RobotModel/TrackedRobot.h:

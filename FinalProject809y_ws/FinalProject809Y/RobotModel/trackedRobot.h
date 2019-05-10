@@ -1,40 +1,17 @@
-#ifndef __ROBOTMODEL_TRACKEDROBOT_H__
-#define __ROBOTMODEL_TRACKEDROBOT_H__
-
-
-class TrackedRobot : public MobileRobot
+#ifndef TRACKEDROBOT_H
+#define TRACKEDROBOT_H
+#include<vector>
+#include<iostream>
+class TrackedRobot
 {
 public:
 	TrackedRobot();
-	int x;
-	int y;
-	virtual vector<int> Up() override{
-		x=x;
-		y=y+1;
-		vector<int> up{x,y};
-		return up;
-		}
-	virtual vector<int> Down() override{
-		x=x;
-		y=y-1;
-		vector<int> down{x,y};
-		return down;
-		}
-	virtual vector<int> Right() override{
-		x=x+1;
-		y=y;
-		vector<int> right{x,y};
-		return right;
-		}
-	virtual vector<int> Left() override{
-		x=x-1;
-		y=y;
-		vector<int> left{x,y};
-		return left;
-		}
+	virtual vector<int> Up(int x, int y) override;
+	virtual vector<int> Down(int x, int y) override;
+	virtual vector<int> Right(int x, int y) override;
+	virtual vector<int> Left(int x, int y) override;
 	~TrackedRobot();
 
 };
 
-
-#endif // __ROBOTMODEL_TRACKEDROBOT_H__
+#endif // TRACKEDROBOT_H

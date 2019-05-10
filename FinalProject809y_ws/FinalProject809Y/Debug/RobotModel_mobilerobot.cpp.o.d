@@ -1,4 +1,4 @@
-Debug/RobotModel_mobilerobot.cpp.o: RobotModel/mobilerobot.cpp \
- RobotModel/mobilerobot.h
+Debug/RobotModel_MobileRobot.cpp.o: RobotModel/MobileRobot.cpp \
+ RobotModel/MobileRobot.h
 
-RobotModel/mobilerobot.h:
+RobotModel/MobileRobot.h:

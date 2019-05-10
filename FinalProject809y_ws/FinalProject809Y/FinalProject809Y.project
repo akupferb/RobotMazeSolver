@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="FinalProject809Y" Version="10.0.0" InternalType="Console">
-  <VirtualDirectory Name="Target"/>
-  <VirtualDirectory Name="RobotState"/>
-  <VirtualDirectory Name="RobotModel">
-    <File Name="RobotModel/trackedRobot.cpp"/>
-    <File Name="RobotModel/trackedRobot.h"/>
-    <File Name="RobotModel/wheeledRobot.cpp"/>
-    <File Name="RobotModel/wheeledRobot.h"/>
-    <File Name="RobotModel/mobilerobot.cpp"/>
-    <File Name="RobotModel/mobilerobot.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="Maze">
-    <File Name="Maze/maze.cpp"/>
-    <File Name="Maze/maze.h"/>
-  </VirtualDirectory>
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
     </Plugin>
   </Plugins>
+  <VirtualDirectory Name="Target"/>
+  <VirtualDirectory Name="RobotState"/>
+  <VirtualDirectory Name="RobotModel">
+    <File Name="RobotModel/TrackedRobot.cpp"/>
+    <File Name="RobotModel/TrackedRobot.h"/>
+    <File Name="RobotModel/WheeledRobot.cpp"/>
+    <File Name="RobotModel/WheeledRobot.h"/>
+    <File Name="RobotModel/MobileRobot.cpp"/>
+    <File Name="RobotModel/MobileRobot.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Maze">
+    <File Name="Maze/maze.cpp"/>
+    <File Name="Maze/maze.h"/>
+  </VirtualDirectory>
   <Description/>
   <Dependencies/>
   <Settings Type="Executable">

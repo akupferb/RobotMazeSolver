@@ -1,4 +1,4 @@
-Debug/RobotModel_wheeledRobot.cpp.o: RobotModel/wheeledRobot.cpp \
- RobotModel/wheeledRobot.h
+Debug/RobotModel_WheeledRobot.cpp.o: RobotModel/WheeledRobot.cpp \
+ RobotModel/WheeledRobot.h
 
-RobotModel/wheeledRobot.h:
+RobotModel/WheeledRobot.h:

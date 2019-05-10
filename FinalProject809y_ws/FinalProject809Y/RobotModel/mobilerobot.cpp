@@ -1,10 +1,10 @@
-#include "mobilerobot.h"
+#include "MobileRobot.h"
 
-RobotModel::MobileRobot::Mobilerobot::Mobilerobot()
+MobileRobot::MobileRobot()
 {
 }
 
-RobotModel::MobileRobot::Mobilerobot::~Mobilerobot()
+MobileRobot::~MobileRobot()
 {
 }
 
