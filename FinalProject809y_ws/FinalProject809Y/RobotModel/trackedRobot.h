@@ -1,15 +1,15 @@
 #ifndef TRACKEDROBOT_H
 #define TRACKEDROBOT_H
 #include<vector>
-#include<iostream>
-class TrackedRobot
+#include "mobilerobot.h"
+class TrackedRobot: MobileRobot
 {
 public:
 	TrackedRobot();
-	virtual std::vector<int> Up(int,int) override {};
-	virtual std::vector<int> Down(int,int) override {};
-	virtual std::vector<int> Right(int,int) override {};
-	virtual std::vector<int> Left(int,int) override {};
+	virtual std::vector<int> Up(int,int);
+	virtual std::vector<int> Down(int,int);
+	virtual std::vector<int> Right(int,int);
+	virtual std::vector<int> Left(int,int);
 	~TrackedRobot();
 
 };

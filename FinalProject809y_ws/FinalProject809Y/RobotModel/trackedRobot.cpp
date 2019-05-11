@@ -4,25 +4,25 @@ TrackedRobot::TrackedRobot()
 {
 }
 
-virtual vector<int> TrackedRobot::Up() override{
+	vector<int> TrackedRobot::Up(int,int){
 		x=x;
 		y=y+1;
 		vector<int> up{x,y};
 		return up;
 		}
-	virtual vector<int> TrackedRobot::Down() override{
+	vector<int> TrackedRobot::Down(int,int){
 		x=x;
 		y=y-1;
 		vector<int> down{x,y};
 		return down;
 		} 
-	virtual vector<int>  TrackedRobot::Right() override{
+	vector<int>  TrackedRobot::Right(int,int){
 		x=x+1;
 		y=y;
 		vector<int> right{x,y};
 		return right;
 		}
-	virtual vector<int>  TrackedRobot::Left() override{
+	vector<int>  TrackedRobot::Left(int,int){
 		x=x-1;
 		y=y;
 		vector<int> left{x,y};

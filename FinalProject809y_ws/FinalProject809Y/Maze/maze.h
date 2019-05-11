@@ -1,18 +1,32 @@
 #ifndef __MAZE_MAZE_H__
 #define __MAZE_MAZE_H__
 #include <vector>
-#include "maze.h"
 #include <iostream>
 #include <fstream>
-using namespace std;
+#include <string>
+using std::vector;
 
 class Maze
 {
+private:
+	std::vector<std::vector<char> > maze_arr;
 public:
-	Maze();
-	vector <vector<char> > displayMaze(int width, int length, string filename);
+	Maze(std::string filename);
+	//attributes
+	const int width = 31;
+	const int length = 46;
 	
-	bool IsWrongPath(int i, int j, vector< vector<char> > maze_arr);
-	bool isObstacle(int i, int j, vector< vector<char> > maze_arr);
+	
+	//members
+	
+	void displayMaze();
+	vector< vector<char> > readMaze(std::string);
+	bool isInputValid(int, int);
+	bool isTargetValid(int, int, char);
+	void changeSpace(int, int, char);
+	//bool isWrongPath(int, int);
+	bool isObstacle(int, int);
 	~Maze();
+};
 #endif // __MAZE_MAZE_H__
+

@@ -1,5 +1,3 @@
-Debug/main.cpp.o: main.cpp Maze/maze.h Maze/maze.h
+Debug/main.cpp.o: main.cpp maze.h
 
-Maze/maze.h:
-
-Maze/maze.h:
+maze.h:
