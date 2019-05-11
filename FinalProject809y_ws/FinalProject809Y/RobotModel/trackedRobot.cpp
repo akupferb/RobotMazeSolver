@@ -1,8 +1,5 @@
 #include "TrackedRobot.h"
 using namespace std;
-TrackedRobot::TrackedRobot()
-{
-}
 
 	vector<int> TrackedRobot::Up(int,int){
 		x=x;
@@ -28,8 +25,4 @@ TrackedRobot::TrackedRobot()
 		vector<int> left{x,y};
 		return left;
 		}
-
-TrackedRobot::~TrackedRobot()
-{
-}
 

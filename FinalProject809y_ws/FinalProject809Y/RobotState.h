@@ -6,7 +6,7 @@ class RobotState
 public:
 	RobotState();
 	
-	~RobotState();
+	virtual ~RobotState(){};
 
 };
 

@@ -1,3 +1,10 @@
-Debug/main.cpp.o: main.cpp maze.h
+Debug/main.cpp.o: main.cpp Maze/maze.h RobotModel/TrackedRobot.h \
+ RobotModel/mobilerobot.h RobotModel/WheeledRobot.h
 
-maze.h:
+Maze/maze.h:
+
+RobotModel/TrackedRobot.h:
+
+RobotModel/mobilerobot.h:
+
+RobotModel/WheeledRobot.h:

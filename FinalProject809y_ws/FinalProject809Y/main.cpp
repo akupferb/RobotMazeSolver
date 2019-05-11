@@ -1,5 +1,7 @@
 #include <iostream>
-#include "maze.h"
+#include "Maze/maze.h"
+#include "RobotModel/TrackedRobot.h"
+#include "RobotModel/WheeledRobot.h"
 #include <fstream>
 #include <vector>
 #include <string>

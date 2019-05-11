@@ -10,7 +10,7 @@ public:
 	virtual std::vector<int> Down(int,int);
 	virtual std::vector<int> Right(int,int);
 	virtual std::vector<int> Left(int,int);
-	~TrackedRobot();
+	virtual ~TrackedRobot(){};
 
 };
 

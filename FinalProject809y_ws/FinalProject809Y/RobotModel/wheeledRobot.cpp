@@ -1,8 +1,6 @@
 #include "WheeledRobot.h"
 using namespace std;
-WheeledRobot::WheeledRobot()
-{
-}
+
 	vector<int> WheeledRobot::Up(int,int){
 		x=x;
 		y=y+1;
@@ -28,7 +26,4 @@ WheeledRobot::WheeledRobot()
 		return left;
 		}
 
-WheeledRobot::~WheeledRobot()
-{
-}
 
