@@ -6,7 +6,18 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="Target"/>
-  <VirtualDirectory Name="RobotState"/>
+  <VirtualDirectory Name="RobotState">
+    <File Name="LeftState.cpp"/>
+    <File Name="LeftState.h"/>
+    <File Name="RightState.cpp"/>
+    <File Name="RightState.h"/>
+    <File Name="DownState.cpp"/>
+    <File Name="DownState.h"/>
+    <File Name="UpState.cpp"/>
+    <File Name="UpState.h"/>
+    <File Name="RobotState.cpp"/>
+    <File Name="RobotState.h"/>
+  </VirtualDirectory>
   <VirtualDirectory Name="RobotModel">
     <File Name="RobotModel/TrackedRobot.cpp"/>
     <File Name="RobotModel/TrackedRobot.h"/>
