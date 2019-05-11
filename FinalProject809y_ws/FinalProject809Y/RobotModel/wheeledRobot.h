@@ -6,8 +6,6 @@ class WheeledRobot: MobileRobot
 {
 public:
 	WheeledRobot();
-	int x;
-	int y;
 	virtual std::vector<int> Up(int,int);
 	virtual std::vector<int> Down(int,int);
 	virtual std::vector<int> Right(int,int);
