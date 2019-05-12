@@ -5,7 +5,7 @@
 class UpState: RobotState
 {
 public:
-	virtual bool update(std::stack<RobotState*>&) override;
+	virtual void update(std::stack<RobotState*>&, std::string) override;
 	UpState();
 	~UpState();
 

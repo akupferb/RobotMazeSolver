@@ -6,8 +6,7 @@ class RobotState
 {
 public:
 	// attributes
-	// Defining stack
-	std::stack<RobotState*>state_stack;
+
 	// methods
 	virtual bool update(std::stack<RobotState*>&)
 	RobotState();

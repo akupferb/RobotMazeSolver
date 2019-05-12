@@ -3,5 +3,8 @@
 
 
 RobotState* state = new UpState();
-if (state_stack.empty())
+	void UpState::update(std::stack<RobotState*>&, std::string action){
+		state_stack.push(action);
+	}
+
 
