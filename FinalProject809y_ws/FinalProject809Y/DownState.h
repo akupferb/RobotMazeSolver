@@ -5,6 +5,7 @@
 class DownState: RobotState
 {
 public:
+	virtual bool update(std::stack<RobotState*>&) override;
 	DownState();
 	~DownState();
 

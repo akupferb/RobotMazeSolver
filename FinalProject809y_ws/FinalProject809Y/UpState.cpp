@@ -1,10 +1,7 @@
 #include "UpState.h"
 
-UpState::UpState()
-{
-}
 
-UpState::~UpState()
-{
-}
+
+RobotState* state = new UpState();
+if (state_stack.empty())
 

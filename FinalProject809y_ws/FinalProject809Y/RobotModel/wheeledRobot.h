@@ -6,10 +6,10 @@ class WheeledRobot: MobileRobot
 {
 public:
 	WheeledRobot();
-	virtual std::vector<int> Up(int,int);
-	virtual std::vector<int> Down(int,int);
-	virtual std::vector<int> Right(int,int);
-	virtual std::vector<int> Left(int,int);
+	virtual std::vector<int> Up(int,int) override;
+	virtual std::vector<int> Down(int,int) override;
+	virtual std::vector<int> Right(int,int) override;
+	virtual std::vector<int> Left(int,int) override;
 	virtual ~WheeledRobot(){};
 
 };
