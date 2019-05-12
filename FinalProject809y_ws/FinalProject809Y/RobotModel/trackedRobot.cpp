@@ -1,6 +1,28 @@
-#include "TrackedRobot.h"
+#include "Maze/Maze.h"
+#include "Target/Targets.h"
+#include "RobotModel/MobileRobot.h"
+#include "RobotModel/TrackedRobot.hpp"
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
+	TrackedRobot::TrackedRobot(int x, int y, Targets t) { // add is valid check
+		target = t;
+		while(x == target.position[0] && y == target.position[1]) {
+			cout << "Invalid start position. Please enter different coordinates: "<< endl;
+			cin >> x>>y;
+		}
+		current_position.push_back(x);
+		current_position.push_back(y);
+	}
+
+	std::vector<int> TrackedRobot::getRobotLoc() {
+		return current_position;
+	}
+	
 	vector<int> TrackedRobot::Up(int,int){
 		x=x-1;
 		y=y;

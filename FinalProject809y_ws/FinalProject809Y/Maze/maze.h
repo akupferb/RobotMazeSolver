@@ -1,31 +1,31 @@
 #ifndef __MAZE_MAZE_H__
 #define __MAZE_MAZE_H__
+
 #include <vector>
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Target/Targets.h"
+#include "RobotModel/MobileRobot.h"
+
 using std::vector;
 
 class Maze
 {
 private:
-	std::vector<std::vector<char> > maze_arr;
+	char maze_arr[31][46];
+	int n;
+	int m;
+	std::vector<int> start_position;
 public:
-	Maze(std::string filename);
-	//attributes
-	const int width = 31;
-	const int length = 46;
-	
-	
-	//members
-	
+	Maze(std::string);
+	// Methods
+	void readMaze(std::string);
 	void displayMaze();
-	vector< vector<char> > readMaze(std::string);
-	bool isInputValid(int, int);
-	bool isTargetValid(int, int, char);
+	bool isObstacle(int, int, MobileRobot);
+	bool isGoal(MobileRobot, Targets);
+	std::vector<int> isTargetInputValid(int, int);
 	void changeSpace(int, int, char);
-	//bool isWrongPath(int, int);
-	bool isObstacle(int, int);
 	~Maze();
 };
 #endif // __MAZE_MAZE_H__

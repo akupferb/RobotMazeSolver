@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="FinalProject809Y" Version="10.0.0" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
   <VirtualDirectory Name="RobotState">
     <File Name="RobotState/LeftState.cpp"/>
     <File Name="RobotState/LeftState.h"/>
@@ -12,12 +17,10 @@
     <File Name="RobotState/RobotState.cpp"/>
     <File Name="RobotState/RobotState.h"/>
   </VirtualDirectory>
-  <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
-  </Plugins>
-  <VirtualDirectory Name="Target"/>
+  <VirtualDirectory Name="Target">
+    <File Name="Target/targets.cpp"/>
+    <File Name="Target/targets.h"/>
+  </VirtualDirectory>
   <VirtualDirectory Name="RobotModel">
     <File Name="RobotModel/TrackedRobot.cpp"/>
     <File Name="RobotModel/TrackedRobot.h"/>

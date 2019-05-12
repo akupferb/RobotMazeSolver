@@ -1,10 +1,20 @@
 #ifndef MOBILEROBOT_H
 #define MOBILEROBOT_H
+
 #include <vector>
-#include "maze.h"
-#include<stack>
-class MobileRobot
-{
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "Target/Targets.h"
+#include <stack>
+
+class MobileRobot {
+private:
+	std::vector<int> current_position;
+	char visited_marker; // | or -
+	char wrong_turn; //X or Y
+	Targets target;
+	friend class Maze;
 public:
 	MobileRobot();
 	int x;
@@ -19,6 +29,7 @@ public:
 	virtual void movedright()=0;
 	virtual void movedleft()=0;
 	virtual void update(std::string);     //  =0 Doubt
+	virtual std::vector<int> getRobotLoc();
 	virtual ~MobileRobot(){};
 };
 
