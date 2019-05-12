@@ -1,7 +1,7 @@
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
-#include "RobotModel/TrackedRobot.hpp"
+#include "RobotModel/TrackedRobot.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -23,49 +23,49 @@ using namespace std;
 		return current_position;
 	}
 	
-	vector<int> TrackedRobot::Up(int,int){
+	vector<int> TrackedRobot::Up(int x,int y){
 		x=x-1;
 		y=y;
 		vector<int> up{x,y};
 		return up;
 		}
-	vector<int> TrackedRobot::Down(int,int){
+	vector<int> TrackedRobot::Down(int x,int y){
 		x=x+1;
 		y=y;
 		vector<int> down{x,y};
 		return down;
 		} 
-	vector<int>  TrackedRobot::Right(int,int){
+	vector<int>  TrackedRobot::Right(int x,int y){
 		x=x;
 		y=y+1;
 		vector<int> right{x,y};
 		return right;
 		}
-	vector<int>  TrackedRobot::Left(int,int){
+	vector<int>  TrackedRobot::Left(int x,int y){
 		x=x;
 		y=y-1;
 		vector<int> left{x,y};
 		return left;
 		}
-	void TrackedRobot::movedup(){
+	void TrackedRobot::movedup(int x,int y){
 		if (Maze::maze_arr[x][y]=='|')
 			Maze::maze_arr[x][y]=='+';
 		else
 			Maze::maze_arr[x][y]='-';
 	}
-	void TrackedRobot::moveddown(){
+	void TrackedRobot::moveddown(int x,int y){
 		if (Maze::maze_arr[x][y]=='|')
 			Maze::maze_arr[x][y]=='+';
 		else
 			Maze::maze_arr[x][y]='-';
 	}
-	void TrackedRobot::movedright(){
+	void TrackedRobot::movedright(int x,int y){
 		if (Maze::maze_arr[x][y]=='|')
 			Maze::maze_arr[x][y]=='+';
 		else
 			Maze::maze_arr[x][y]='-';
 	}
-	void TrackedRobot::movedleft(){
+	void TrackedRobot::movedleft(int x,int y){
 		if (Maze::maze_arr[x][y]=='|')
 			Maze::maze_arr[x][y]=='+';
 		else

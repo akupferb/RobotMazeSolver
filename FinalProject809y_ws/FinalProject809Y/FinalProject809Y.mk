@@ -62,8 +62,8 @@ AS       := C:/TDM-GCC-64/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Maze_maze.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_DownState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_UpState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_LeftState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_RobotState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Maze_maze.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_DownState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_UpState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_LeftState.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_RobotState.cpp$(ObjectSuffix) $(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(ObjectSuffix) $(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) 
 
 
 
@@ -94,14 +94,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix): Target/targets.cpp $(IntermediateDirectory)/Target_targets.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/Target/targets.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Target_targets.cpp$(DependSuffix): Target/targets.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Target_targets.cpp$(DependSuffix) -MM Target/targets.cpp
-
-$(IntermediateDirectory)/Target_targets.cpp$(PreprocessSuffix): Target/targets.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Target_targets.cpp$(PreprocessSuffix) Target/targets.cpp
-
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
@@ -142,14 +134,6 @@ $(IntermediateDirectory)/RobotState_LeftState.cpp$(DependSuffix): RobotState/Lef
 $(IntermediateDirectory)/RobotState_LeftState.cpp$(PreprocessSuffix): RobotState/LeftState.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotState_LeftState.cpp$(PreprocessSuffix) RobotState/LeftState.cpp
 
-$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix): RobotState/RightState.cpp $(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotState/RightState.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix): RobotState/RightState.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix) -MM RobotState/RightState.cpp
-
-$(IntermediateDirectory)/RobotState_RightState.cpp$(PreprocessSuffix): RobotState/RightState.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotState_RightState.cpp$(PreprocessSuffix) RobotState/RightState.cpp
-
 $(IntermediateDirectory)/RobotState_RobotState.cpp$(ObjectSuffix): RobotState/RobotState.cpp $(IntermediateDirectory)/RobotState_RobotState.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotState/RobotState.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotState_RobotState.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/RobotState_RobotState.cpp$(DependSuffix): RobotState/RobotState.cpp
@@ -157,6 +141,14 @@ $(IntermediateDirectory)/RobotState_RobotState.cpp$(DependSuffix): RobotState/Ro
 
 $(IntermediateDirectory)/RobotState_RobotState.cpp$(PreprocessSuffix): RobotState/RobotState.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotState_RobotState.cpp$(PreprocessSuffix) RobotState/RobotState.cpp
+
+$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix): Target/targets.cpp $(IntermediateDirectory)/Target_targets.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/Target/targets.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Target_targets.cpp$(DependSuffix): Target/targets.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Target_targets.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Target_targets.cpp$(DependSuffix) -MM Target/targets.cpp
+
+$(IntermediateDirectory)/Target_targets.cpp$(PreprocessSuffix): Target/targets.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Target_targets.cpp$(PreprocessSuffix) Target/targets.cpp
 
 $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(ObjectSuffix): RobotModel/WheeledRobot.cpp $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotModel/WheeledRobot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(ObjectSuffix) $(IncludePath)
@@ -166,14 +158,6 @@ $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(DependSuffix): RobotModel/
 $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(PreprocessSuffix): RobotModel/WheeledRobot.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotModel_WheeledRobot.cpp$(PreprocessSuffix) RobotModel/WheeledRobot.cpp
 
-$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix): RobotModel/TrackedRobot.cpp $(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotModel/TrackedRobot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix): RobotModel/TrackedRobot.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix) -MM RobotModel/TrackedRobot.cpp
-
-$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(PreprocessSuffix): RobotModel/TrackedRobot.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(PreprocessSuffix) RobotModel/TrackedRobot.cpp
-
 $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(ObjectSuffix): RobotModel/MobileRobot.cpp $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotModel/MobileRobot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(DependSuffix): RobotModel/MobileRobot.cpp
@@ -181,6 +165,22 @@ $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(DependSuffix): RobotModel/M
 
 $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(PreprocessSuffix): RobotModel/MobileRobot.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotModel_MobileRobot.cpp$(PreprocessSuffix) RobotModel/MobileRobot.cpp
+
+$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix): RobotState/RightState.cpp $(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotState/RightState.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix): RobotState/RightState.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/RobotState_RightState.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/RobotState_RightState.cpp$(DependSuffix) -MM RobotState/RightState.cpp
+
+$(IntermediateDirectory)/RobotState_RightState.cpp$(PreprocessSuffix): RobotState/RightState.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotState_RightState.cpp$(PreprocessSuffix) RobotState/RightState.cpp
+
+$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix): RobotModel/TrackedRobot.cpp $(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/akufe/Downloads/final809y/FinalProject809y_ws/FinalProject809Y/RobotModel/TrackedRobot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix): RobotModel/TrackedRobot.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(DependSuffix) -MM RobotModel/TrackedRobot.cpp
+
+$(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(PreprocessSuffix): RobotModel/TrackedRobot.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/RobotModel_TrackedRobot.cpp$(PreprocessSuffix) RobotModel/TrackedRobot.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

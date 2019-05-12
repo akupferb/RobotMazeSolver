@@ -5,7 +5,7 @@
 class RightState: public RobotState
 {
 public:
-	RightState():RobotState("Right");
+	RightState():RobotState("Right"){};
 	virtual void update(std::stack<RobotState*>&) override;
 	~RightState();
 

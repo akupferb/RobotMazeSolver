@@ -13,11 +13,11 @@ using std::vector;
 class Maze
 {
 private:
-	char maze_arr[31][46];
 	int n;
 	int m;
 	std::vector<int> start_position;
 public:
+	char maze_arr[31][46];
 	Maze(std::string);
 	// Methods
 	void readMaze(std::string);

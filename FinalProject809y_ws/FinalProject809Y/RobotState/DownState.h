@@ -5,7 +5,7 @@
 class DownState: public RobotState
 {
 public:
-	DownState():RobotState("Down");
+	DownState():RobotState("Down"){};
 	virtual void update(std::stack<RobotState*>&) override;
 	~DownState();
 

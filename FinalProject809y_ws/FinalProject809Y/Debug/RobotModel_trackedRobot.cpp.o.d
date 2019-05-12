@@ -1,8 +1,13 @@
 Debug/RobotModel_TrackedRobot.cpp.o: RobotModel/TrackedRobot.cpp \
- RobotModel/TrackedRobot.h RobotModel/mobilerobot.h Targets.hpp
+ Maze/Maze.h Target/Targets.h RobotModel/MobileRobot.h \
+ RobotModel/TrackedRobot.h RobotModel/mobilerobot.h
+
+Maze/Maze.h:
+
+Target/Targets.h:
+
+RobotModel/MobileRobot.h:
 
 RobotModel/TrackedRobot.h:
 
 RobotModel/mobilerobot.h:
-
-Targets.hpp:
