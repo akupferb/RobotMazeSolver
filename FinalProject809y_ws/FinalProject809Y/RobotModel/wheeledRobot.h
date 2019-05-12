@@ -2,7 +2,7 @@
 #define WHEELEDROBOT_H
 #include <vector>
 #include "mobilerobot.h"
-class WheeledRobot: MobileRobot
+class WheeledRobot: public MobileRobot
 {
 public:
 	WheeledRobot();

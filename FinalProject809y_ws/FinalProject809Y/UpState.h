@@ -2,7 +2,7 @@
 #define UPSTATE_H
 #include "RobotState.h"
 
-class UpState: RobotState
+class UpState: public RobotState
 {
 public:
 	virtual void update(std::stack<RobotState*>&, std::string) override;

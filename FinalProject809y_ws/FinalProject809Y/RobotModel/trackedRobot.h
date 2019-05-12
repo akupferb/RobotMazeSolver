@@ -2,7 +2,7 @@
 #define TRACKEDROBOT_H
 #include<vector>
 #include "mobilerobot.h"
-class TrackedRobot: MobileRobot
+class TrackedRobot: public MobileRobot
 {
 public:
 	TrackedRobot();
