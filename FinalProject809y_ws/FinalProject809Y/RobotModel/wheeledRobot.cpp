@@ -52,29 +52,17 @@ using namespace std;
 		return left;
 		}
 		
-	void WheeledRobot::movedup(int x, int y){
-		if (Maze::maze_arr[x][y]=='-')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='|';
+	void WheeledRobot::movedUp(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'|');
 	}
-	void WheeledRobot::moveddown(int x, int y){
-		if (Maze::maze_arr[x][y]=='-')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='|';
+	void WheeledRobot::movedDown(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'|');
 	}
-	void WheeledRobot::movedright(int x, int y){
-		if (Maze::maze_arr[x][y]=='-')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='|';
+	void WheeledRobot::movedRight(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'|');
 	}
-	void WheeledRobot::movedleft(int x, int y){
-		if (Maze::maze_arr[x][y]=='-')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='|';
+	void WheeledRobot::movedLeft(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'|');
 	}
 
 

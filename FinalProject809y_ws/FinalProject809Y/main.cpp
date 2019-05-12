@@ -55,6 +55,7 @@ int main()
 	} else {
 		WheeledRobot w_robot(input_x, input_y, bottle);
 	}
+	maze.changeSpace(input_x,input_y,'w');
 	/*********************************************************************/
 	cout << "Please enter the start position for the tracked robot: " << endl;
 	cin >> input_x >> input_y;
@@ -63,6 +64,7 @@ int main()
 	} else {
 		TrackedRobot t_robot(input_x, input_y, bottle);
 	}
+	maze.changeSpace(input_x,input_y,'t');
 	
 	vector <vector<int>> pastPositions;
 	int pastPosSize = pastPositions.size();

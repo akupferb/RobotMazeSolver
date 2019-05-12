@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include <stack>
 
@@ -24,10 +25,10 @@ public:
 	virtual std::vector<int> Down(int,int);
 	virtual std::vector<int> Right(int,int);
 	virtual std::vector<int> Left(int,int);
-	virtual void movedup(int,int);
-	virtual void moveddown(int,int);
-	virtual void movedright(int,int);
-	virtual void movedleft(int,int);
+	virtual void movedUp(int,int,Maze);
+	virtual void movedDown(int,int,Maze);
+	virtual void movedRight(int,int,Maze);
+	virtual void movedLeft(int,int,Maze);
 	virtual void update(std::string);     //  =0 Doubt
 	virtual std::vector<int> getRobotLoc();
 	virtual ~MobileRobot(){};

@@ -47,27 +47,15 @@ using namespace std;
 		vector<int> left{x,y};
 		return left;
 		}
-	void TrackedRobot::movedup(int x,int y){
-		if (Maze::maze_arr[x][y]=='|')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='-';
+	void TrackedRobot::movedUp(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'-');
 	}
-	void TrackedRobot::moveddown(int x,int y){
-		if (Maze::maze_arr[x][y]=='|')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='-';
+	void TrackedRobot::movedDown(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'-');
 	}
-	void TrackedRobot::movedright(int x,int y){
-		if (Maze::maze_arr[x][y]=='|')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='-';
+	void TrackedRobot::movedRight(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'-');
 	}
-	void TrackedRobot::movedleft(int x,int y){
-		if (Maze::maze_arr[x][y]=='|')
-			Maze::maze_arr[x][y]=='+';
-		else
-			Maze::maze_arr[x][y]='-';
+	void TrackedRobot::movedLeft(int x, int y, Maze maze){
+		maze.changeSpace(x,y,'-');
 	}

@@ -79,7 +79,43 @@ std::vector<int> Maze::isTargetInputValid(int start_x, int start_y) {
 }
 
 void Maze::changeSpace(int x, int y, char z){
-	maze_arr[x][y] = z;
+	if (z=='-') {
+		if (maze_arr[x][y] == '|') {
+			maze_arr[x][y] = '+';
+		} else {
+			maze_arr[x][y] = z;
+		}
+	}
+	if (z=='|') {
+		if (maze_arr[x][y] == '-') {
+			maze_arr[x][y] = '+';
+		} else {
+			maze_arr[x][y] = z;
+	}
+	if (z=='X') {
+		if (maze_arr[x][y] == 'Y') {
+			maze_arr[x][y] = 'Z';
+		} else {
+			maze_arr[x][y] = z;
+	}
+	if (z=='Y') {
+		if (maze_arr[x][y] == 'X') {
+			maze_arr[x][y] = 'Z';
+		} else {
+			maze_arr[x][y] = z;
+	}
+	if (z=='t') {
+		if (maze_arr[x][y] == 'w') {
+			maze_arr[x][y] = 'S';
+		} else {
+			maze_arr[x][y] = z;
+	}
+	if (z=='b') {
+		if (maze_arr[x][y] == 'p') {
+			maze_arr[x][y] = 'G';
+		} else {
+			maze_arr[x][y] = z;
+	}
 }
 
 Maze::~Maze(){
