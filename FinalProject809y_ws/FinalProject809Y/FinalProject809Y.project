@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="FinalProject809Y" Version="10.0.0" InternalType="Console">
+  <VirtualDirectory Name="RobotState">
+    <File Name="RobotState/LeftState.cpp"/>
+    <File Name="RobotState/LeftState.h"/>
+    <File Name="RobotState/RightState.cpp"/>
+    <File Name="RobotState/RightState.h"/>
+    <File Name="RobotState/DownState.cpp"/>
+    <File Name="RobotState/DownState.h"/>
+    <File Name="RobotState/UpState.cpp"/>
+    <File Name="RobotState/UpState.h"/>
+    <File Name="RobotState/RobotState.cpp"/>
+    <File Name="RobotState/RobotState.h"/>
+  </VirtualDirectory>
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="Target"/>
-  <VirtualDirectory Name="RobotState">
-    <File Name="LeftState.cpp"/>
-    <File Name="LeftState.h"/>
-    <File Name="RightState.cpp"/>
-    <File Name="RightState.h"/>
-    <File Name="DownState.cpp"/>
-    <File Name="DownState.h"/>
-    <File Name="UpState.cpp"/>
-    <File Name="UpState.h"/>
-    <File Name="RobotState.cpp"/>
-    <File Name="RobotState.h"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="RobotModel">
     <File Name="RobotModel/TrackedRobot.cpp"/>
     <File Name="RobotModel/TrackedRobot.h"/>
