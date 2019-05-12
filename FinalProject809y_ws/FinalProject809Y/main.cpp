@@ -61,5 +61,8 @@ int main()
 	while (maze_tracked.isTargetValid(target_x, target_y, 't' )){
 	}
 	maze_tracked.changeSpace(target_x,target_y,'b');
+	MobileRobot *robo_ptr = new WheeledRobot();
+	robo_ptr->Down(3,2);
+	delete robo_ptr;
 return 0;
 }	

@@ -1,6 +1,7 @@
 #ifndef ROBOTSTATE_H
 #define ROBOTSTATE_H
 #include<stack>
+#include <string>
 
 class RobotState
 {
@@ -8,7 +9,7 @@ public:
 	// attributes
 
 	// methods
-	virtual bool update(std::stack<RobotState*>&)
+	virtual void update(std::stack<RobotState*>&,std::string);
 	RobotState();
 	virtual ~RobotState(){};
 };

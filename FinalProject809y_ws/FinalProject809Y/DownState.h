@@ -1,7 +1,7 @@
 #ifndef DOWNSTATE_H
 #define DOWNSTATE_H
 #include "RobotState.h"
-
+#include <string>
 class DownState: public RobotState
 {
 public:

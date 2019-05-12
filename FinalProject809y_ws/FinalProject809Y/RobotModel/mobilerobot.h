@@ -1,6 +1,7 @@
 #ifndef MOBILEROBOT_H
 #define MOBILEROBOT_H
 #include <vector>
+#include<stack>
 class MobileRobot
 {
 public:
