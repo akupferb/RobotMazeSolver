@@ -7,10 +7,12 @@ class RobotState
 {
 public:
 	// attributes
-
+	std::string state_;
+	RobotState(std::string state="RobotState"):state_{state}{}
+	// Defining stack
+	std::stack<RobotState*>state_stack;
 	// methods
-	virtual void update(std::stack<RobotState*>&,std::string);
-	RobotState();
+	virtual void update(std::stack<RobotState*>&);
 	virtual ~RobotState(){};
 };
 

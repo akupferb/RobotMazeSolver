@@ -1,7 +1,6 @@
 #include "DownState.h"
 
-
-	RobotState* state = new DownState();
-	void DownState::update(std::stack<RobotState*>&, std::string action){
-		state_stack.push(action);
-	}
+void DownState::update(std::stack<RobotState*>& state_stack){
+	if (!state_stack.empty())
+		state_stack.push(this);
+}

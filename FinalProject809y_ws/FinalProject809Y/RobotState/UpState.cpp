@@ -1,8 +1,5 @@
 #include "UpState.h"
 
-
-
-RobotState* state = new UpState();
-	void UpState::update(std::stack<RobotState*>&, std::string action){
-		state_stack.push(action);
-	}
+void UpState::update(std::stack<RobotState*>& state_stack){
+	state_stack.push(this);
+}

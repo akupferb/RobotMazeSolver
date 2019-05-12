@@ -5,8 +5,8 @@
 class RightState: public RobotState
 {
 public:
-	virtual void update(std::stack<RobotState*>&, std::string) override;
-	RightState();
+	RightState():RobotState("Right");
+	virtual void update(std::stack<RobotState*>&) override;
 	~RightState();
 
 };
