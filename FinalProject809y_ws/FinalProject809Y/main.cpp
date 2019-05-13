@@ -30,7 +30,9 @@ int main()
 	std::vector<int> targetB;
 	int input;
 	int input_x, input_y;
-	std::vector<int> robot_targets;
+	std::vector<int> targets_input;
+	std::vector<int> tracked_target;
+	std::vector<int> wheeled_target;
 	std::vector<Targets> plate_bottle;
 	/***************************************************************/
 	cout << "Please enter target choice for wheeled robot (0 for plate, 1 for bottle): ";
@@ -39,11 +41,11 @@ int main()
 		cout << "Invalid entry! Please enter only 0 or 1: ";
 		cin >> input;
 	}
-	robot_targets.push_back(input);
+	targets_input.push_back(input);
 	if(input == 1){
-		robot_targets.push_back(0);
+		targets_input.push_back(0);
 	} else {
-		robot_targets.push_back(1);
+		targets_input.push_back(1);
 	}
 	/*********************************************************************/
 	cout << "Please enter the coordinates for the plate target: ";
@@ -62,12 +64,16 @@ int main()
 //	cout << "[" << input_x << " " << input_y << "]" <<  endl;
 	Targets bottle(targetB);
 	/*********************************************************************/
-	if(robot_targets[0] == 0) {
+	if(targets_input[0] == 0) {
 		plate_bottle.push_back(plate);
 		plate_bottle.push_back(bottle);
+		wheeled_target = targetP;
+		tracked_target = targetB;
 	} else {
 		plate_bottle.push_back(bottle);
 		plate_bottle.push_back(plate);
+		wheeled_target = targetB;
+		tracked_target = targetP;
 	}
 	/*********************************************************************/
 	cout << "Please enter the start position for the wheeled robot: ";
@@ -95,340 +101,194 @@ int main()
 	vector<int> newPosition;
 	
 	MobileRobot *tRobot = &t_robot;
-//	MobileRobot *wRobot = &w_robot;
+	MobileRobot *wRobot = &w_robot;
 	
-	/*************** Main Code Section: tracked=bottle, wheeled=plate ************************************/
-	if (robot_targets[0] == 0) {
-		cout << "tracked=bottle, wheeled=plate" << endl;
-		while (maze.isGoal(tRobot,targetB)==0) { // This loop will run until the tracked robot reaches the bottle
-			movedPosition = false; // Resets variable that checks if a movement has been made yet
-			
-			// -- Looking North
-			if (movedPosition != true) {
-				newPosition = t_robot.Up(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
-				if (blocked != true) {
-//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
-					maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedUp(newPosition[0],newPosition[1]);
-					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-					pastPosSize = pastPositions.size(); // Update size
-					//previousPosition = t_robot.getRobotLoc();
-					// ------- Update stack with "UP"
-					t_robot.setRobotLoc(newPosition); // Update the current position to the new position
-					movedPosition = true; // Causes the loop to skip other movements
-				}
-			}
-			
-			// -- Looking East
-			if (movedPosition != true) {
-				newPosition = t_robot.Right(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
-				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
-				if (blocked != true) {
-					maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedRight(newPosition[0],newPosition[1]);
-					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-					pastPosSize = pastPositions.size(); // Update size
-					//previousPosition = t_robot.getRobotLoc();
-					// ------- Update stack with "RIGHT"
-					t_robot.setRobotLoc(newPosition); // Update the current position to the new position
-					movedPosition = true; // Causes the loop to skip other movements
-				}
-			}
+	/*************** Main Code Section: wheeled=plate, tracked=bottle ************************************/
+	if (targets_input[0] == 0) {
+		cout << "\nwheeled=plate, tracked=bottle\n" << endl;
+	} else {
+		cout << "\nwheeled=bottle, tracked=plate\n" << endl;
+	}
+	while (maze.isGoal(tRobot,tracked_target)==0) { // This loop will run until the tracked robot reaches the bottle
+		movedPosition = false; // Resets variable that checks if a movement has been made yet
 		
-			// -- Looking South
-			if (movedPosition != true) {
-				newPosition = t_robot.Down(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
+		// -- Looking North
+		if (movedPosition != true) {
+			newPosition = t_robot.Up(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
+			if (blocked != true) {
 //				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
-				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
-				if (blocked != true) {
-					maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedDown(newPosition[0],newPosition[1]);
-					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-					pastPosSize = pastPositions.size(); // Update size
-					//previousPosition = t_robot.getRobotLoc();
-					// ------- Update stack with "DOWN"
-					t_robot.setRobotLoc(newPosition); // Update the current position to the new position
-					movedPosition = true; // Causes the loop to skip other movements
-				}
-			}
-		
-			// -- Looking west
-			if (movedPosition != true) {
-				newPosition = t_robot.Left(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
-				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
-				if (blocked != true) {
-					maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedLeft(newPosition[0],newPosition[1]);
-					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-					pastPosSize = pastPositions.size(); // Update size
-					//previousPosition = t_robot.getRobotLoc();
-					// ------- Update stack with "Left"
-					t_robot.setRobotLoc(newPosition); // Update the current position to the new position
-					movedPosition = true; // Causes the loop to skip other movements
-				}
-			}
-			
-			// -- Backtracking
-			if (movedPosition != true) { // If no move can be made
-	//			cout << "-----we must backtrack :(" << endl;
-				//vector<int> temp = t_robot.getRobotLoc(); // Saves the current position in a temporary variable
-				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'X');
-				for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
-					t_robot.setRobotLoc(pastPositions[i]);
-				}
-				
-				pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
-				pastPosSize = pastPositions.size();
-				// ------- POP out top of the stack
-				//previousPosition = temp;
+				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedUp(newPosition[0],newPosition[1]);
+				pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = t_robot.getRobotLoc();
+				// ------- Update stack with "UP"
+				t_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
 			}
 		}
 		
-//		while (maze.isGoal(wRobot,targetP)==0) { // This loop will run until the wheeled robot reaches the plate
-//			movedPosition = false; // Resets variable that checks if a movement has been made yet
-//			
-//			// -- Looking North
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Up(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedUp(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "UP"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Looking East
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Right(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedRight(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "RIGHT"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking South
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Down(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedDown(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "DOWN"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking west
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Left(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedLeft(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "Left"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Backtracking
-//			if (movedPosition != true) { // If no move can be made
-//	//			cout << "-----we must backtrack :(" << endl;
-//				//vector<int> temp = t_robot.getRobotLoc(); // Saves the current position in a temporary variable
-//				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'Y');
-//				for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
-//					t_robot.getRobotLoc()[0] = pastPositions[i][0]; t_robot.getRobotLoc()[1] = pastPositions[i][1];
-//				}
-//				pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
-//				pastPosSize = pastPositions.size();
-//				// ------- POP out top of the stack
-//				//previousPosition = temp;
-//			}
-//		}
+		// -- Looking East
+		if (movedPosition != true) {
+			newPosition = t_robot.Right(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedRight(newPosition[0],newPosition[1]);
+				pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = t_robot.getRobotLoc();
+				// ------- Update stack with "RIGHT"
+				t_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+	
+		// -- Looking South
+		if (movedPosition != true) {
+			newPosition = t_robot.Down(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedDown(newPosition[0],newPosition[1]);
+				pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = t_robot.getRobotLoc();
+				// ------- Update stack with "DOWN"
+				t_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+	
+		// -- Looking west
+		if (movedPosition != true) {
+			newPosition = t_robot.Left(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'-'); //t_robot.MovedLeft(newPosition[0],newPosition[1]);
+				pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = t_robot.getRobotLoc();
+				// ------- Update stack with "Left"
+				t_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+		
+		// -- Backtracking
+		if (movedPosition != true) { // If no move can be made
+//			cout << "-----we must backtrack :(" << endl;
+			//vector<int> temp = t_robot.getRobotLoc(); // Saves the current position in a temporary variable
+			maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'X');
+			for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
+				t_robot.setRobotLoc(pastPositions[i]);
+			}
+			pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
+			pastPosSize = pastPositions.size();
+			// ------- POP out top of the stack
+			//previousPosition = temp;
+		}
 	}
 	
-//	/*************** Main Code Section: tracked=plate, wheeled=bottle ************************************/
-//	if (robot_targets[0] == `) {
-//		while (maze.isGoal(t_robot,plate)) { // This loop will run until the tracked robot reaches the plate
-//			movedPosition = false; // Resets variable that checks if a movement has been made yet
-//			
-//			// -- Looking North
-//			if (movedPosition != true) {
-//				newPosition = t_robot.Up(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],t_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					t_robot.MovedUp(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "UP"
-//					t_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Looking East
-//			if (movedPosition != true) {
-//				newPosition = t_robot.Right(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],t_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					t_robot.MovedRight(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "RIGHT"
-//					t_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking South
-//			if (movedPosition != true) {
-//				newPosition = t_robot.Down(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],t_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					t_robot.MovedDown(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "DOWN"
-//					t_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking west
-//			if (movedPosition != true) {
-//				newPosition = t_robot.Left(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],t_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					t_robot.MovedLeft(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(t_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "Left"
-//					t_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Backtracking
-//			if (movedPosition != true) { // If no move can be made
-//	//			cout << "-----we must backtrack :(" << endl;
-//				//vector<int> temp = t_robot.getRobotLoc(); // Saves the current position in a temporary variable
-//				maze.changeSpace(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1],'X')
-//				for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
-//					t_robot.getRobotLoc()[0] = pastPositions[i][0]; t_robot.getRobotLoc()[1] = pastPositions[i][1];
-//				}
-//				pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
-//				pastPosSize = pastPositions.size();
-//				// ------- POP out top of the stack
-//				//previousPosition = temp;
-//			}
-//		}
-//		
-//		while (maze.isGoal(w_robot,bottle)) { // This loop will run until the wheeled robot reaches the bottle
-//			movedPosition = false; // Resets variable that checks if a movement has been made yet
-//			
-//			// -- Looking North
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Up(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],w_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					w_robot.MovedUp(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "UP"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Looking East
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Right(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],w_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					w_robot.MovedRight(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "RIGHT"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking South
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Down(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],w_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					w_robot.MovedDown(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = w_robot.getRobotLoc();
-//					// ------- Update stack with "DOWN"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//		
-//			// -- Looking west
-//			if (movedPosition != true) {
-//				newPosition = w_robot.Left(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-//				bool blocked = maze.isObstacle(newPosition[0],newPosition[1],w_robot); // (checks for #, X, -)
-//				if (blocked == false) {
-//					w_robot.MovedLeft(newPosition[0],newPosition[1]);
-//					pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
-//					pastPosSize = pastPositions.size(); // Update size
-//					//previousPosition = t_robot.getRobotLoc();
-//					// ------- Update stack with "Left"
-//					w_robot.getRobotLoc() = newPosition; // Update the current position to the new position
-//					movedPosition = true; // Causes the loop to skip other movements
-//				}
-//			}
-//			
-//			// -- Backtracking
-//			if (movedPosition != true) { // If no move can be made
-//	//			cout << "-----we must backtrack :(" << endl;
-//				//vector<int> temp = t_robot.getRobotLoc(); // Saves the current position in a temporary variable
-//				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'Y')
-//				for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
-//					t_robot.getRobotLoc()[0] = pastPositions[i][0]; t_robot.getRobotLoc()[1] = pastPositions[i][1];
-//				}
-//				pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
-//				pastPosSize = pastPositions.size();
-//				// ------- POP out top of the stack
-//				//previousPosition = temp;
-//			}
-//		}
-//	}
+	/**********************************************************************/
+	while (maze.isGoal(wRobot,wheeled_target)==0) { // This loop will run until the wheeled robot reaches the plate
+		movedPosition = false; // Resets variable that checks if a movement has been made yet
+		
+		// -- Looking North
+		if (movedPosition != true) {
+			newPosition = w_robot.Up(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
+			if (blocked != true) {
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedUp(newPosition[0],newPosition[1]);
+				pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = w_robot.getRobotLoc();
+				// ------- Update stack with "UP"
+				w_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+		
+		// -- Looking East
+		if (movedPosition != true) {
+			newPosition = w_robot.Right(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedRight(newPosition[0],newPosition[1]);
+				pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = w_robot.getRobotLoc();
+				// ------- Update stack with "RIGHT"
+				w_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
 	
+		// -- Looking South
+		if (movedPosition != true) {
+			newPosition = w_robot.Down(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedDown(newPosition[0],newPosition[1]);
+				pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = w_robot.getRobotLoc();
+				// ------- Update stack with "DOWN"
+				w_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+	
+		// -- Looking west
+		if (movedPosition != true) {
+			newPosition = w_robot.Left(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
+//				cout << "[" << newPosition[0] << " " << newPosition[1] << "]" <<  endl;
+			bool blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot); // (checks for #, X, -)
+			if (blocked != true) {
+				maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'|'); //w_robot.MovedLeft(newPosition[0],newPosition[1]);
+				pastPositions.push_back(w_robot.getRobotLoc()); // Add current position to pastPositions 2D vector
+				pastPosSize = pastPositions.size(); // Update size
+				//previousPosition = w_robot.getRobotLoc();
+				// ------- Update stack with "Left"
+				w_robot.setRobotLoc(newPosition); // Update the current position to the new position
+				movedPosition = true; // Causes the loop to skip other movements
+			}
+		}
+		
+		// -- Backtracking
+		if (movedPosition != true) { // If no move can be made
+//			cout << "-----we must backtrack :(" << endl;
+			//vector<int> temp = w_robot.getRobotLoc(); // Saves the current position in a temporary variable
+			maze.changeSpace(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1],'Y');
+			for (int i=0; i<pastPosSize; ++i) { // Updates current position as last index from pastPositions
+				w_robot.setRobotLoc(pastPositions[i]);
+			}
+			pastPositions.erase(pastPositions.end()); // remove the last movement from pastPositions
+			pastPosSize = pastPositions.size();
+//	maze.displayMaze();
+			// ------- POP out top of the stack
+			//previousPosition = temp;
+		}
+	}
 	/***********************************************************************************/
 //	delete tRobot;
 //	delete wRobot;
+	maze.changeSpace(startW[0],startW[1],'w');
 	maze.changeSpace(startT[0],startT[1],'t');
+	maze.changeSpace(targetP[0],targetP[1],'p');
+	maze.changeSpace(targetB[0],targetB[1],'b');
+	
+	// Remove X's from Maze
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
-			if (maze.maze_arr[i][j] == 'X')
+			if (maze.maze_arr[i][j] == 'X' || maze.maze_arr[i][j] == 'Y' || maze.maze_arr[i][j] == 'Z')
 				maze.changeSpace(i,j,' ');
+			if (maze.maze_arr[i][j] == 'T')
+				maze.changeSpace(i,j,'-');
 		}
 	}
 //	Maze * pointMaze = &maze;

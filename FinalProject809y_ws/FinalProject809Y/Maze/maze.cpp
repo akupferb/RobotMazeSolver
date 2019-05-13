@@ -32,10 +32,11 @@ Maze::Maze() {
 //	}
 //}
 
-bool Maze::isObstacle(int x, int y, MobileRobot* robot){
-	if( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker() || x>30) {
+bool Maze::isObstacle(int x, int y, MobileRobot* robot) {
+	if ( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker())
 		return true;
-	}
+	if ( maze_arr[x][y] == '+' || maze_arr[x][y] == 'T' || maze_arr[x][y] == 'Z' || x>30)
+		return true;
 	return false;
 }
 
@@ -58,35 +59,31 @@ std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 	return vec;
 }
 
-void Maze::changeSpace(int x, int y, char z){
-	if (z=='-') {
-		if (maze_arr[x][y] == '|') {
-			maze_arr[x][y] = '+';
-		} else {
-			maze_arr[x][y] = z;
-		}
-	}
-	else if (z=='|') {
+void Maze::changeSpace(int x, int y, char z) {
+	if (z=='|') {
 		if (maze_arr[x][y] == '-') {
 			maze_arr[x][y] = '+';
 		} else {
 			maze_arr[x][y] = z;
 		}
 	}
-	else if (z=='X') {
-		if (maze_arr[x][y] == 'Y') {
-			maze_arr[x][y] = 'Z';
-		} else {
-			maze_arr[x][y] = z;
-		}
-	}
 	else if (z=='Y') {
-		if (maze_arr[x][y] == 'X') {
+		if (maze_arr[x][y] == '-')
+			maze_arr[x][y] = 'T';
+		else if (maze_arr[x][y] == '+')
+			maze_arr[x][y] = 'T';
+		else if (maze_arr[x][y] == 'X')
 			maze_arr[x][y] = 'Z';
-		} else {
+		else 
 			maze_arr[x][y] = z;
-		}
 	}
+//	else if (z=='-') {
+//		if (maze_arr[x][y] == '|') {
+//			maze_arr[x][y] = '+';
+//		} else {
+//			maze_arr[x][y] = z;
+//		}
+//	}
 	else if (z=='t') {
 		if (maze_arr[x][y] == 'w') {
 			maze_arr[x][y] = 'S';
@@ -127,7 +124,7 @@ void Maze::displayMaze() {
 		if (j<10)
 			cout << j << " ";
 		else {
-			if (h==9) {
+			if (h==10) {
 				k++;
 				h=0;
 			}
