@@ -6,8 +6,10 @@
 #include <string>
 
 void MobileRobot::update(std::string action){
-	RobotState::RobotState* state = new Robotstate::UpState();
+	robotstate::RobotState* state = new robotstate::UpState();
 	if (state_stack.empty())
 		state->update(state_stack);
+	else
+		state_stack.top()->update(state_stack)
 	delete state;
 }
