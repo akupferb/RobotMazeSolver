@@ -1,13 +1,11 @@
 Debug/RobotModel_WheeledRobot.cpp.o: RobotModel/WheeledRobot.cpp \
- Maze/Maze.h Target/Targets.h RobotModel/MobileRobot.h \
- RobotModel/WheeledRobot.h RobotModel/mobilerobot.h
+ Maze/Maze.h RobotModel/MobileRobot.h Target/Targets.h \
+ RobotModel/WheeledRobot.h
 
 Maze/Maze.h:
 
-Target/Targets.h:
-
 RobotModel/MobileRobot.h:
 
-RobotModel/WheeledRobot.h:
+Target/Targets.h:
 
-RobotModel/mobilerobot.h:
+RobotModel/WheeledRobot.h:

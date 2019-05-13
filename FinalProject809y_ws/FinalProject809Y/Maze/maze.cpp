@@ -1,5 +1,7 @@
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
+#include "RobotModel/MobileRobot.h"
+//#include "RobotModel/WheeledRobot.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -8,74 +10,52 @@
 using std::cout;
 using std::endl;
 
-Maze::Maze(std::string filename)
-{
+Maze::Maze() {
 	n = 31;
 	m = 46;
-	Maze::readMaze(filename);
 }
 
-void Maze::readMaze(std::string filename) {
-  std::ifstream input;
-  input.open(filename);
-  if (input.is_open()) {
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        char temp;
-        temp = input.get();
-        maze_arr[i][j] = temp;
-      }
-    }
-  } else {
-    std::cout<<"Invalid Maze File. Terminating"<<std::endl;
-    exit(1);
-  }
+//void Maze::readMaze(std::string filename) {
+//	std::ifstream input;
+//	input.open(filename);
+//	if (input.is_open()) {
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < m; j++) {
+//			char temp;
+//			temp = input.get();
+//			maze_arr[i][j] = temp;
+//		}
+//	}
+//	} else {
+//		std::cout<<"Invalid Maze File. Terminating"<<std::endl;
+//		exit(1);
+//	}
+//}
+
+bool Maze::isObstacle(int x, int y, MobileRobot* robot){
+	if( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker() || x>30) {
+		return true;
+	}
+	return false;
 }
 
-void Maze::displayMaze() {
-  cout << "\n     ";
-  for (int j=0; j<m; ++j)
-  cout << j << " ";
-  cout << "\n   ---";
-  for (int j=0; j<m; ++j)
-  cout << "--";
-  for (int i=0; i<n; ++i) {
-    cout << "\n " << i << " | ";
-    for (int j=0; j<m; ++j)
-    cout << maze_arr[i][j] << " ";
-    cout << "|";
-  }
-  cout << "\n   ---";
-  for (int j=0; j<m; ++j)
-  cout << "--";
-  cout << endl;
+bool Maze::isGoal(MobileRobot* robot, std::vector<int> goal) {
+	if(robot->getRobotLoc() == goal) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
-bool Maze::isObstacle(int x, int y, MobileRobot robot){
-  if( maze_arr[x][y] == '#' || maze_arr[x][y] == robot.wrong_turn || maze_arr[x][y] == robot.visited_marker) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-bool Maze::isGoal(MobileRobot robot, Targets goal) {
-  if(robot.current_position == goal.position) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-std::vector<int> Maze::isTargetInputValid(int start_x, int start_y) {
-  while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>n||start_y<0||start_y>m) {
-    std::cout<< "Invalid input position. Please enter different coordinates: "<<std::endl;
-    std::cin >>start_x>>start_y;
-  }
-  std::vector<int> vec;
-  vec.push_back(start_x);
-  vec.push_back(start_y);
-  return vec;
+std::vector<int> Maze::isInputValid(int start_x, int start_y) {
+	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>n||start_y<0||start_y>m) {
+		std::cout<< "Invalid input position. Please enter different coordinates: ";
+		std::cin>>start_x>>start_y;
+	}
+	std::vector<int> vec;
+	vec.push_back(start_x);
+	vec.push_back(start_y);
+	return vec;
 }
 
 void Maze::changeSpace(int x, int y, char z){
@@ -86,38 +66,89 @@ void Maze::changeSpace(int x, int y, char z){
 			maze_arr[x][y] = z;
 		}
 	}
-	if (z=='|') {
+	else if (z=='|') {
 		if (maze_arr[x][y] == '-') {
 			maze_arr[x][y] = '+';
 		} else {
 			maze_arr[x][y] = z;
+		}
 	}
-	if (z=='X') {
+	else if (z=='X') {
 		if (maze_arr[x][y] == 'Y') {
 			maze_arr[x][y] = 'Z';
 		} else {
 			maze_arr[x][y] = z;
+		}
 	}
-	if (z=='Y') {
+	else if (z=='Y') {
 		if (maze_arr[x][y] == 'X') {
 			maze_arr[x][y] = 'Z';
 		} else {
 			maze_arr[x][y] = z;
+		}
 	}
-	if (z=='t') {
+	else if (z=='t') {
 		if (maze_arr[x][y] == 'w') {
 			maze_arr[x][y] = 'S';
 		} else {
 			maze_arr[x][y] = z;
+		}
 	}
-	if (z=='b') {
+	else if (z=='b') {
 		if (maze_arr[x][y] == 'p') {
 			maze_arr[x][y] = 'G';
 		} else {
 			maze_arr[x][y] = z;
+		}
 	}
+	else
+		maze_arr[x][y] = z;
 }
 
-Maze::~Maze(){
+void Maze::displayMaze() {
+	cout << "\n    ---";
+	for (int j=0; j<m; ++j)
+		cout << "--";
+	for (int i=0; i<n; ++i) {
+		if (i<10)
+			cout << "\n  " << i << " | ";
+		else
+			cout << "\n " << i << " | ";
+		for (int j=0; j<m; ++j)
+			cout << maze_arr[i][j] << " ";
+		cout << "|";
+	}
+	cout << "\n    ---";
+	for (int j=0; j<m; ++j)
+		cout << "--";
+	cout << "\n      ";
+	int h = 0; int k = 1;
+	for (int j=0; j<m; ++j) {
+		if (j<10)
+			cout << j << " ";
+		else {
+			if (h==9) {
+				k++;
+				h=0;
+			}
+			cout << k << " ";
+			h++;
+		}
+	}
+	cout << "\n                          ";
+	for (int i=0; i<3; i++) {
+		for (int j=0; j<10; j++)
+			cout << j << " ";
+	}
+	cout << "0 1 2 3 4 5";
+	cout << endl;
 }
-
+//
+//void rewriteX(Maze* maze) {
+//	for (int i=0; i<31; i++) {
+//		for (int j=0; j<46; j++) {
+//			if (maze->maze_arr[i][j] == 'X')
+//				maze->maze_arr[i][j] = ' ';
+//		}
+//	}
+//}

@@ -1,18 +1,21 @@
-#ifndef TARGETS_HPP_
-#define TARGETS_HPP_
+
+#pragma once
 #include "Maze/Maze.h"
-#include <vector>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <string>
+#include <vector>
 
 class Targets {
 private:
-	std::vector<int> position;
-	friend class Maze;
-	friend class MobileRobot;
-public:
-	Targets(std::vector<int>);
-};
+  std::vector<int> position;
+  friend class Maze;
+  friend class MobileRobot;
+  friend class TrackedRobot;
+  friend class WheeledRobot;
 
-#endif // __TARGETS_H__
+public:
+  Targets();
+  Targets(std::vector<int>);
+  std::vector<int> get();
+};
