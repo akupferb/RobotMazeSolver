@@ -49,10 +49,10 @@ public:
 							{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}};
 //  void readMaze(std::string);
 	void displayMaze();
-//	void rewriteX(Maze*);
+	void rewriteX();
 	bool isObstacle(int, int, MobileRobot*);
 	bool isGoal(MobileRobot*, std::vector<int>);
 	std::vector<int> isInputValid(int, int);
-	void changeSpace(int, int, char);
+	void changeSpace(std::vector<int>, char);
 	
 };

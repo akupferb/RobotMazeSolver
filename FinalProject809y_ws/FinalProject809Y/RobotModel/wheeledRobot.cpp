@@ -7,7 +7,8 @@
 #include <fstream>
 #include <string>
 
-WheeledRobot::WheeledRobot(int x, int y, std::vector<int> goal) {
+WheeledRobot::WheeledRobot(std::vector<int> xy, std::vector<int> goal) {
+	int x = xy[0]; int y = xy[1];
 	while(x == goal[0] && y == goal[1]) {
 		std::cout << "Invalid start position. Please enter different coordinates for wheeled robot: ";
 		std::cin >> x>>y;

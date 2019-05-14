@@ -14,7 +14,7 @@ private:
 	std::vector<int> goal;
 	friend class Maze;
 public:
-	TrackedRobot(int, int, std::vector<int>);
+	TrackedRobot(std::vector<int>, std::vector<int>);
 	virtual std::vector<int> Up(int,int);
 	virtual std::vector<int> Down(int,int);
 	virtual std::vector<int> Right(int,int);

@@ -35,7 +35,7 @@ Maze::Maze() {
 bool Maze::isObstacle(int x, int y, MobileRobot* robot) {
 	if ( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker())
 		return true;
-	if ( maze_arr[x][y] == '+' || maze_arr[x][y] == 'T' || maze_arr[x][y] == 'Z' || x>30)
+	if ( maze_arr[x][y] == '+' || maze_arr[x][y] == 'T' || maze_arr[x][y] == 'Z' || x>=n)
 		return true;
 	return false;
 }
@@ -49,7 +49,7 @@ bool Maze::isGoal(MobileRobot* robot, std::vector<int> goal) {
 }
 
 std::vector<int> Maze::isInputValid(int start_x, int start_y) {
-	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>n||start_y<0||start_y>m) {
+	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>=n||start_y<0||start_y>=m) {
 		std::cout<< "Invalid input position. Please enter different coordinates: ";
 		std::cin>>start_x>>start_y;
 	}
@@ -59,7 +59,8 @@ std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 	return vec;
 }
 
-void Maze::changeSpace(int x, int y, char z) {
+void Maze::changeSpace(std::vector<int> xy, char z) {
+	int x = xy[0]; int y = xy[1];
 	if (z=='|') {
 		if (maze_arr[x][y] == '-') {
 			maze_arr[x][y] = '+';
@@ -141,11 +142,15 @@ void Maze::displayMaze() {
 	cout << endl;
 }
 //
-//void rewriteX(Maze* maze) {
-//	for (int i=0; i<31; i++) {
-//		for (int j=0; j<46; j++) {
-//			if (maze->maze_arr[i][j] == 'X')
-//				maze->maze_arr[i][j] = ' ';
-//		}
-//	}
-//}
+void Maze::rewriteX() {
+	for (int i=0; i<31; i++) {
+		for (int j=0; j<46; j++) {
+			std::vector<int> ij;
+			ij.push_back(i); ij.push_back(j);
+			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
+				 Maze::changeSpace(ij,' ');
+			if (maze_arr[i][j] == 'T')
+				 Maze::changeSpace(ij,'-');
+		}
+	}
+}
