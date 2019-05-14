@@ -1,7 +1,6 @@
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
-//#include "RobotModel/WheeledRobot.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -14,23 +13,6 @@ Maze::Maze() {
 	n = 31;
 	m = 46;
 }
-
-//void Maze::readMaze(std::string filename) {
-//	std::ifstream input;
-//	input.open(filename);
-//	if (input.is_open()) {
-//	for (int i = 0; i < n; i++) {
-//		for (int j = 0; j < m; j++) {
-//			char temp;
-//			temp = input.get();
-//			maze_arr[i][j] = temp;
-//		}
-//	}
-//	} else {
-//		std::cout<<"Invalid Maze File. Terminating"<<std::endl;
-//		exit(1);
-//	}
-//}
 
 bool Maze::isObstacle(int x, int y, MobileRobot* robot) {
 	if ( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker())
@@ -142,15 +124,19 @@ void Maze::displayMaze() {
 	cout << endl;
 }
 //
-void Maze::rewriteX() {
+void Maze::rewriteX(std::vector<int> w, std::vector<int> t, std::vector<int> p, std::vector<int> b) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
 			std::vector<int> ij;
 			ij.push_back(i); ij.push_back(j);
 			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
-				 Maze::changeSpace(ij,' ');
+				 maze_arr[i][j] = ' ';
 			if (maze_arr[i][j] == 'T')
-				 Maze::changeSpace(ij,'-');
+				 maze_arr[i][j] = '-';
 		}
 	}
+	Maze::changeSpace(w,'w');
+	Maze::changeSpace(t,'t');
+	Maze::changeSpace(p,'p');
+	Maze::changeSpace(b,'b');
 }

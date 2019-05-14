@@ -1,7 +1,6 @@
 #pragma once
 #include "RobotModel/MobileRobot.h"
 #include "Target/Targets.h"
-//#include "RobotModel/WheeledRobot.h"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -47,9 +46,9 @@ public:
 							{'#',' ',' ','#','#','#','#',' ',' ','#',' ',' ','#','#','#','#','#','#','#',' ',' ','#',' ',' ','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#',' ',' ','#'},
 							{'#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
 							{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}};
-//  void readMaze(std::string);
+
 	void displayMaze();
-	void rewriteX();
+	void rewriteX(std::vector<int>, std::vector<int>, std::vector<int>, std::vector<int>);
 	bool isObstacle(int, int, MobileRobot*);
 	bool isGoal(MobileRobot*, std::vector<int>);
 	std::vector<int> isInputValid(int, int);

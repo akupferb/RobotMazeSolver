@@ -8,6 +8,7 @@
 
 class TrackedRobot: public MobileRobot {
 private:
+	Targets target;
 	std::vector<int> current_position;
 	char visited_marker = '-'; // | or -
 	char wrong_turn = 'X';     // X or Y
@@ -25,6 +26,7 @@ public:
 //	virtual void movedLeft(int,int,Maze*);
 	void setRobotLoc(std::vector<int> pos) { current_position = pos; }
 	virtual std::vector<int> getRobotLoc();
+	virtual std::vector<int> getTargetLoc();
 	virtual char getVisitedMarker();
 	virtual char getWrongTurnMarker();
 	virtual std::vector<int> getGoal();

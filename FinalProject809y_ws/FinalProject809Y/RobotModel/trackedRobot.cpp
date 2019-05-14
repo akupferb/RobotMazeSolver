@@ -9,17 +9,19 @@
 
 TrackedRobot::TrackedRobot(std::vector<int> xy, std::vector<int> goal) {
 	int x = xy[0]; int y = xy[1];
-	while(x == goal[0] && y == goal[1]) {
-		std::cout << "Invalid start position. Please enter different coordinates for tracked robot: ";
-		std::cin >> x>>y;
+	current_position = xy;
+	int xT = goal[0]; int yT = goal[1];
+	while(x == xT && y == yT) {
+		std::cout << "Invalid: tracked robot & target share position. Please enter different coordinates for target: ";
+		std::cin >> xT >> yT;
 	}
-	current_position.push_back(x);
-	current_position.push_back(y);
+	goal[0]=xT; goal[1]=yT;
+	target.setTargetLoc(goal);
 }
 
-//void setRobotLoc(std::vector<int> pos) {
-//	TrackedRobot::current_position = pos;
-//}
+std::vector<int> TrackedRobot::getTargetLoc() {
+	return target.getTargetLoc();
+}
 
 std::vector<int> TrackedRobot::getRobotLoc() {
 	return current_position;
