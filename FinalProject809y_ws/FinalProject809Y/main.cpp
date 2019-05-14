@@ -9,24 +9,13 @@
 #include <string>
 
 using namespace std;
-// Symbols:
-// ' ' = open
-// '#' = blocked
-// 't' = start for tracked robot
-// 'w' = start for wheeled robot
-// 'b' = goal for tracked robot
-// 'p' = goal for wheeled robot
-// '|' = path for wheeled robot
-// '-' = path for tracked robot
-// '+' = overlapping paths
 
-//void solveMaze(Maze &, MobileRobot*, MobileRobot*, TrackedRobot, WheeledRobot, vector<int>, vector<int>, vector<int>, vector<int>, vector<int>, vector<int>);
 vector <vector<int>> pastPositionsT;
 int pastPosSizeT = pastPositionsT.size();
 vector <vector<int>> pastPositionsW;
 int pastPosSizeW = pastPositionsW.size();
-//bool movedPosition;
 vector<int> newPosition;
+void displayPath(vector<vector<int>>, vector<vector<int>>, int, int, vector<int>, vector<int>);
 
 int main()
 {
@@ -72,10 +61,10 @@ int main()
 	/*********************************************************************/
 	if(input == 0) {
 		targetP = w_robot.getTargetLoc(); targetB = t_robot.getTargetLoc();
-		cout << "\nwheeled = plate, tracked = bottle\n" << endl;
+		cout << "\ntracked = bottle, wheeled = plate\n" << endl;
 	} else {
 		targetB = w_robot.getTargetLoc(); targetP = t_robot.getTargetLoc();
-		cout << "\nwheeled = bottle, tracked = plate\n" << endl;
+		cout << "\ntracked = plate, wheeled = bottle\n" << endl;
 	}
 	/*********************************************************************/
 	
@@ -113,18 +102,23 @@ int main()
 				break;
 			}
 			// -- Backtracking
+			if (pastPosSizeT==0) {
+				cout << "There is no possible path for the Tracked Robot. Program Cancelled! :(\n";
+				maze.rewriteX(startW,startT,targetP,targetB); maze.displayMaze(); 
+				return 0;
+			}
 			maze.changeSpace(t_robot.getRobotLoc(),'X');
 			for (int i=0; i<pastPosSizeT; ++i) { t_robot.setRobotLoc(pastPositionsT[i]); }
 			pastPositionsT.erase(pastPositionsT.end());
 			pastPosSizeT = pastPositionsT.size();
 			// ------- POP out top of the stack
-			//	maze.displayMaze();
 		}
 		maze.changeSpace(t_robot.getRobotLoc(),'-');
 		pastPositionsT.push_back(t_robot.getRobotLoc());
 		pastPosSizeT = pastPositionsT.size();
 		t_robot.setRobotLoc(newPosition);
 	}
+	cout << "The tracked robot has reached the goal!" << endl;
 	
 	/**********************************************************************/
 	while (maze.isGoal(wRobot,w_robot.getTargetLoc())==0) { // This loop will run until the wheeled robot reaches its target
@@ -158,26 +152,64 @@ int main()
 				break;
 			}
 			// -- Backtracking
+			if (pastPosSizeW==0) {
+				cout << "There is no possible path for the Wheeled Robot. Program Cancelled! :(";
+				maze.rewriteX(startW,startT,targetP,targetB); maze.displayMaze();
+				return 0;
+			}
 			maze.changeSpace(w_robot.getRobotLoc(),'Y');
 			for (int i=0; i<pastPosSizeW; ++i) { w_robot.setRobotLoc(pastPositionsW[i]); }
 			pastPositionsW.erase(pastPositionsW.end());
 			pastPosSizeW = pastPositionsW.size();
 			// ------- POP out top of the stack
-			//	maze.displayMaze();
 		}
 		maze.changeSpace(w_robot.getRobotLoc(),'|');
 		pastPositionsW.push_back(w_robot.getRobotLoc());
 		pastPosSizeW = pastPositionsW.size();
 		w_robot.setRobotLoc(newPosition);
 	}
-//	solveMaze(maze, tRobot, wRobot, t_robot, w_robot, tracked_target, wheeled_target, startT, startW, targetP, targetB);
+	cout << "The wheeled robot has reached the goal!" << endl;
+	
 	/***********************************************************************************/
 	
-	// Remove WrongTurns from Maze
+	// Remove WrongTurns from Maze, and display maze and paths taken:
 	maze.rewriteX(startW,startT,targetP,targetB);
+	maze.displayMaze();
+	displayPath(pastPositionsT, pastPositionsW, pastPosSizeT, pastPosSizeW, t_robot.getRobotLoc(), w_robot.getRobotLoc());
 	maze.displayMaze();
 	return 0;
 }
 
 /***********************************************************/
-//void solveMaze(Maze &maze, MobileRobot* tRobot, MobileRobot* wRobot, TrackedRobot t_robot, WheeledRobot w_robot, vector<int> tracked_target, vector<int> wheeled_target,
+
+void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, int sizeT, int sizeW, vector<int> finalT, vector<int> finalW) {
+	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
+	cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
+	cout << "'b' = bottle target\n'p' = plate target\n";
+		 // Loops through all past positions to display direct maze path
+	if (sizeT >= sizeW) {
+		cout << "\nThe maze paths for the tracked robot and wheeled robots are:\n   t       w   \n";
+		for (int i=0; i<sizeT; ++i) {
+			if (i<sizeW)
+				cout << "[" << pastT[i][0] << "," << pastT[i][1] << "] [" << pastW[i][0] << "," << pastW[i][1] << "]" << endl;
+			else if (i==sizeW)
+				cout << "[" << pastT[i][0] << "," << pastT[i][1] << "] [" << finalW[0] << "," << finalW[1] << "]" << endl;
+			else 
+				cout << "[" << pastT[i][0] << "," << pastT[i][1] << "]" << endl;
+		}
+		cout << "[" << finalT[0] << "," << finalT[1] << "]\n" << endl;
+	}
+	if (sizeW > sizeT) {
+		cout << "\nThe maze paths for the wheeled robot and tracked robots are:\n   w       t   \n";
+		for (int i=0; i<sizeW; ++i) {
+			if (i<sizeT)
+				cout << "[" << pastW[i][0] << "," << pastW[i][1] << "] [" << pastT[i][0] << "," << pastT[i][1] << "]" << endl;
+			else if (i==sizeT)
+				cout << "[" << pastW[i][0] << "," << pastW[i][1] << "] [" << finalT[0] << "," << finalT[1] << "]" << endl;
+			else {
+				cout << "[" << pastW[i][0] << "," << pastW[i][1] << "]" << endl;
+			}
+		}
+		cout << "[" << finalW[0] << "," << finalW[1] << "]\n" << endl;
+	}
+}

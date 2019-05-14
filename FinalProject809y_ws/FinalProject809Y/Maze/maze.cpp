@@ -44,11 +44,12 @@ std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 void Maze::changeSpace(std::vector<int> xy, char z) {
 	int x = xy[0]; int y = xy[1];
 	if (z=='|') {
-		if (maze_arr[x][y] == '-') {
+		if (maze_arr[x][y] == '-')
 			maze_arr[x][y] = '+';
-		} else {
+		else if (maze_arr[x][y] == '+')
+			maze_arr[x][y] = '+';
+		else
 			maze_arr[x][y] = z;
-		}
 	}
 	else if (z=='Y') {
 		if (maze_arr[x][y] == '-')
