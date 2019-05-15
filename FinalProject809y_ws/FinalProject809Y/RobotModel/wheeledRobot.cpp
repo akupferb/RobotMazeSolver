@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-WheeledRobot::WheeledRobot(Maze* maze):MobileRobot() {
+WheeledRobot::WheeledRobot(Maze* maze) {
 	std::cout << "Please enter the start position for the wheeled robot: ";
 	start_position = maze->numericInputs();
 	current_position = getStart();

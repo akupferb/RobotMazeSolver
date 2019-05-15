@@ -6,6 +6,7 @@
 #include <string>
 
 using std::cout;
+using std::cin;
 using std::endl;
 
 Maze::Maze() {
@@ -31,8 +32,8 @@ bool Maze::isGoal(MobileRobot* robot, std::vector<int> goal) {
 
 std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>=n||start_y<0||start_y>=m) {
-		std::cout<< "Invalid input position. Please enter different coordinates: ";
-		std::cin>>start_x>>start_y;
+		cout<< "Invalid input position. Please enter different coordinates: ";
+		cin>>start_x>>start_y;
 	}
 	std::vector<int> vec;
 	vec.push_back(start_x);
@@ -74,7 +75,7 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 		maze_arr[x][y] = z;
 }
 
-void Maze::rewriteX(MobileRobot* robot, MobileRobot* robot2, std::vector<int> p, std::vector<int> b) {
+void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> p, std::vector<int> b) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
 			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
@@ -130,15 +131,15 @@ void Maze::displayMaze() {
 
 std::vector<int> Maze::numericInputs() {
 	int input1, input2;
-	std::cin >> input1 >> input2;
-	while(!std::cin) {
-		std::cin.clear(); // reset failbit
-		std::cin.ignore(1000,'\n'); //skip bad input
-		std::cout << "Invalid Entry, non-numeric input. Please reenter the two inputs: ";
-		std::cin >> input1 >> input2;
+	cin >> input1 >> input2;
+	while(!cin) {
+		cin.clear(); // reset failbit
+		cin.ignore(1000,'\n'); //skip bad input
+		cout << "Invalid Entry, non-numeric input. Please reenter the two inputs: ";
+		cin >> input1 >> input2;
 	}
 	std::vector<int> inputs;
 	inputs = isInputValid(input1, input2);
-	std::cout << "[" << inputs[0] << "," << inputs[1] << "]" << std::endl;
+	cout << "[" << inputs[0] << "," << inputs[1] << "]" << endl;
 	return inputs;
 }

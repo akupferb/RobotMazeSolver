@@ -15,7 +15,7 @@ private:
 	char visited_marker = '-';
 	char wrong_turn = 'X';
 public:
-	TrackedRobot(Maze*):MobileRobot(){}; // Constructor
+	TrackedRobot(Maze*); // Constructor
 	// Setters & Getters
 	virtual void setTargetLoc(std::vector<int> pos) { target = pos; }
 	virtual void setRobotLoc(std::vector<int> pos) { current_position = pos; }

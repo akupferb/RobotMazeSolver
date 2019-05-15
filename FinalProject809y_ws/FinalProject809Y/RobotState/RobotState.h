@@ -1,6 +1,6 @@
 #ifndef ROBOTSTATE_H
 #define ROBOTSTATE_H
-#include<stack>
+#include <stack>
 #include <string>
 
 
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif // ROBOTSTATE_H
+#endif // ROBOTSTATE_H 

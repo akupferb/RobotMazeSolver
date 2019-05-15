@@ -2,12 +2,12 @@
 #define LEFTSTATE_H
 #include "RobotState.h"
 #include <string>
+
 class LeftState: public RobotState
 {
 public:
 	virtual void update(std::stack<RobotState*>&) override;
-	~LeftState();
-
+	virtual ~LeftState(){};
 };
 
-#endif // LEFTSTATE_H
+#endif // LEFTSTATE_H 

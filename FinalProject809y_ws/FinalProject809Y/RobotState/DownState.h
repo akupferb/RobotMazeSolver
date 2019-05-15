@@ -2,12 +2,12 @@
 #define DOWNSTATE_H
 #include "RobotState.h"
 #include <string>
+
 class DownState: public RobotState
 {
 public:
 	virtual void update(std::stack<RobotState*>&) override;
-	~DownState();
-
+	virtual ~DownState(){};
 };
 
-#endif // DOWNSTATE_H
+#endif // DOWNSTATE_H 
