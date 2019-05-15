@@ -10,43 +10,40 @@
 
 using namespace std;
 
+vector<int> newPosition;
 vector <vector<int>> pastPositionsT;
 int pastPosSizeT = pastPositionsT.size();
 vector <vector<int>> pastPositionsW;
 int pastPosSizeW = pastPositionsW.size();
-vector<int> newPosition;
+vector<int> numericInputs(Maze maze);
 void displayPath(vector<vector<int>>, vector<vector<int>>, int, int, vector<int>, vector<int>);
 
 int main()
 {
-	Maze maze;
+	Maze maze; // Initializes the maze of 'Maze' Class
+	int input;
 	bool blocked;
 	std::vector<int> startT, startW;
 	std::vector<int> targetP, targetB;
-	int input, input_x, input_y;
 	std::vector<int> tracked_target;
 	std::vector<int> wheeled_target;
 	/***************************************************************/
+	
 	cout << "Please enter the start position for the wheeled robot: ";
-	cin >> input_x >> input_y;
-	startW = maze.isInputValid(input_x, input_y);
+	startW = numericInputs(maze);
 	maze.changeSpace(startW,'w');
 	cout << "Please enter the start position for the tracked robot: ";
-	cin >> input_x >> input_y;
-	startT = maze.isInputValid(input_x, input_y);
+	startT = numericInputs(maze);
 	maze.changeSpace(startT,'t');
 	cout << "Please enter the coordinates for the plate target: ";
-	cin >> input_x >> input_y;
-	targetP = maze.isInputValid(input_x, input_y);
+	targetP = numericInputs(maze);
 	cout << "Please enter the coordinates for the bottle target: ";
-	cin >> input_x >> input_y;
-	targetB = maze.isInputValid(input_x, input_y);
+	targetB = numericInputs(maze);
 	/*********************************************************************/
 	cout << "Please enter target choice for wheeled robot (0 for plate, 1 for bottle): ";
 	cin >> input;
 	while (input != 0 && input != 1) {
-		cout << "Invalid entry! Please enter only 0 or 1: ";
-		cin >> input;
+		cout << "Invalid entry! Please enter only 0 or 1: "; cin >> input;
 	}
 	if(input == 0) {
 		wheeled_target = targetP; tracked_target = targetB;
@@ -180,7 +177,22 @@ int main()
 	return 0;
 }
 
-/***********************************************************/
+/**********************************************************************************************************************************/
+
+vector<int> numericInputs(Maze maze) {
+	int input1, input2;
+	cin >> input1 >> input2;
+	while(!cin) {
+		cin.clear(); // reset failbit
+		cin.ignore(1000,'\n'); //skip bad input
+		cout << "Invalid Entry, non-numeric input. Please reenter the two inputs: ";
+		cin >> input1 >> input2;
+	}
+	vector<int> inputs;
+	inputs = maze.isInputValid(input1, input2);
+	cout << "[" << inputs[0] << "," << inputs[1] << "]" << endl;
+	return inputs;
+}
 
 void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, int sizeT, int sizeW, vector<int> finalT, vector<int> finalW) {
 	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";

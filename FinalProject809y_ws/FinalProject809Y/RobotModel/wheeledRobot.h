@@ -20,10 +20,6 @@ public:
 	virtual std::vector<int> Down(int,int);
 	virtual std::vector<int> Right(int,int);
 	virtual std::vector<int> Left(int,int);
-//	virtual void movedSpace(int,int);
-//	virtual void movedDown(int,int,Maze*);
-//	virtual void movedRight(int,int,Maze*);
-//	virtual void movedLeft(int,int,Maze*);
 	void setRobotLoc(std::vector<int> pos) { current_position = pos; }
 	virtual std::vector<int> getRobotLoc();
 	virtual std::vector<int> getTargetLoc();

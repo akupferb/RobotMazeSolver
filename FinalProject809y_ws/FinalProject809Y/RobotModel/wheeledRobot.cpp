@@ -66,18 +66,3 @@ std::vector<int>  WheeledRobot::Left(int x, int y){
 	std::vector<int> left{x,y};
 	return left;
 }
-
-//void WheeledRobot::movedSpace(int x, int y){
-//	Maze::maze->changeSpace(x,y,'|');
-//}
-//void WheeledRobot::movedDown(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'|');
-//}
-//void WheeledRobot::movedRight(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'|');
-//}
-//void WheeledRobot::movedLeft(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'|');
-//}
-
-

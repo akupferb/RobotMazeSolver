@@ -66,16 +66,3 @@ std::vector<int>  TrackedRobot::Left(int x,int y){
 	std::vector<int> left{x,y};
 	return left;
 }
-
-//void TrackedRobot::movedSpace(int x, int y){
-//	Maze::maze->changeSpace(x,y,'-');
-//}
-//void TrackedRobot::movedDown(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'-');
-//}
-//void TrackedRobot::movedRight(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'-');
-//}
-//void TrackedRobot::movedLeft(int x, int y, Maze* maze){
-//	maze.changeSpace(x,y,'-');
-//}
