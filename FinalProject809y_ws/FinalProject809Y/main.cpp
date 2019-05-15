@@ -8,185 +8,59 @@
 #include <string>
 
 using namespace std;
+vector<int> numericInputs(Maze maze);
+void connectTarget(MobileRobot*, MobileRobot*, Targets, Targets);
+void displayPath(vector<vector<int>>, vector<vector<int>>, int, int, vector<int>, vector<int>);
+void findPath(Maze*, MobileRobot*, MobileRobot*, Targets, Targets, vector<vector<int>> &, int &);
 
 vector<int> newPosition;
-vector <vector<int>> pastPositionsT;
-int pastPosSizeT = pastPositionsT.size();
-vector <vector<int>> pastPositionsW;
-int pastPosSizeW = pastPositionsW.size();
-vector<int> numericInputs(Maze maze);
-void displayPath(vector<vector<int>>, vector<vector<int>>, int, int, vector<int>, vector<int>);
+vector <vector<int>> pastPositionsT; int pastPosSizeT = pastPositionsT.size();
+vector <vector<int>> pastPositionsW; int pastPosSizeW = pastPositionsW.size();
 
 int main()
 {
-	Maze maze; // Initializes the maze of 'Maze' Class
-	int input;
-	bool blocked;
-	std::vector<int> startT, startW;
-	std::vector<int> targetP, targetB;
-	std::vector<int> tracked_target;
-	std::vector<int> wheeled_target;
-	/***************************************************************/
-	cout << "Please enter the start position for the tracked robot: ";
-	startT = numericInputs(maze);
-	maze.changeSpace(startT,'t');
-	cout << "Please enter the start position for the wheeled robot: ";
-	startW = numericInputs(maze);
-	maze.changeSpace(startW,'w');
+	Maze maze; // Initialize a maze of 'Maze' Class
+	Maze* maze_pointer = &maze; // Initialize a pointer to the maze
+	TrackedRobot tracked_robot(maze_pointer);
+	MobileRobot *tracked_pointer = &tracked_robot;
+	WheeledRobot wheeled_robot(maze_pointer);
+	MobileRobot *wheeled_pointer = &wheeled_robot;
 	cout << "Please enter the coordinates for the plate target: ";
-	targetP = numericInputs(maze);
+	Targets plate(maze.numericInputs());
 	cout << "Please enter the coordinates for the bottle target: ";
-	targetB = numericInputs(maze);
-	/*********************************************************************/
+	Targets bottle(maze.numericInputs());
+	connectTarget(tracked_pointer, wheeled_pointer, plate, bottle);
+	
+	/*********************** Maze Solver Section: **************************/
+	findPath(maze_pointer, tracked_pointer, wheeled_pointer, plate, bottle, pastPositionsT, pastPosSizeT);
+	findPath(maze_pointer, wheeled_pointer, tracked_pointer, plate, bottle, pastPositionsW, pastPosSizeW);
+	
+	// Remove WrongTurns from Maze, and display maze and paths taken:
+	maze.rewriteX(tracked_pointer,wheeled_pointer,plate.getTargetLoc(),bottle.getTargetLoc());
+	maze.displayMaze();
+	displayPath(pastPositionsT, pastPositionsW, pastPosSizeT, pastPosSizeW, tracked_robot.getRobotLoc(), wheeled_robot.getRobotLoc());
+	maze.displayMaze();
+	return 0;
+}
+
+
+
+/***************************************** Methods used within the Main: *********************************************/
+
+void connectTarget(MobileRobot* t_robot, MobileRobot* w_robot, Targets plate, Targets bottle) {
+	int input;
 	cout << "Please enter target choice for wheeled robot (0 for plate, 1 for bottle): ";
 	cin >> input;
 	while (input != 0 && input != 1) {
 		cout << "Invalid entry! Please enter only 0 or 1: "; cin >> input;
 	}
 	if(input == 0) {
-		wheeled_target = targetP; tracked_target = targetB;
-	} else {
-		wheeled_target = targetB; tracked_target = targetP;
-	}
-	/*********************************************************************/
-	WheeledRobot w_robot(startW, wheeled_target);
-	MobileRobot *wRobot = &w_robot;
-	TrackedRobot t_robot(startT, tracked_target);
-	MobileRobot *tRobot = &t_robot;
-	/*********************************************************************/
-	if(input == 0) {
-		targetP = w_robot.getTargetLoc(); targetB = t_robot.getTargetLoc();
+		w_robot->setTargetLoc(plate.getTargetLoc()); t_robot->setTargetLoc(bottle.getTargetLoc());
 		cout << "\ntracked = bottle, wheeled = plate\n" << endl;
 	} else {
-		targetB = w_robot.getTargetLoc(); targetP = t_robot.getTargetLoc();
+		w_robot->setTargetLoc(bottle.getTargetLoc()); t_robot->setTargetLoc(plate.getTargetLoc());
 		cout << "\ntracked = plate, wheeled = bottle\n" << endl;
 	}
-	
-	/*********************** Main Code Section: **************************/
-	while (maze.isGoal(tRobot,t_robot.getTargetLoc())==0) { // This loop will run until the tracked robot reaches its target
-		while(1) { 
-			// -- Looking Up
-			newPosition = t_robot.Up(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot);
-			if (blocked != true) {
-				// ------- Update stack with "UP"
-				break;
-			}
-			// -- Looking Right
-			newPosition = t_robot.Right(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot);
-			if (blocked != true) {
-				// ------- Update stack with "RIGHT"
-				break;
-			}
-			// -- Looking Down
-			newPosition = t_robot.Down(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot);
-			if (blocked != true) {
-				// ------- Update stack with "DOWN"
-				break;
-			}
-			// -- Looking Left
-			newPosition = t_robot.Left(t_robot.getRobotLoc()[0],t_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],tRobot);
-			if (blocked != true) {
-				// ------- Update stack with "Left"
-				break;
-			}
-			// -- Backtracking
-			if (pastPosSizeT==0) {
-				cout << "There is no possible path for the Tracked Robot. Program Cancelled! :(\n";
-				maze.rewriteX(startW,startT,targetP,targetB); maze.displayMaze(); 
-				return 0;
-			}
-			maze.changeSpace(t_robot.getRobotLoc(),'X');
-			for (int i=0; i<pastPosSizeT; ++i) { t_robot.setRobotLoc(pastPositionsT[i]); }
-			pastPositionsT.erase(pastPositionsT.end());
-			pastPosSizeT = pastPositionsT.size();
-			// ------- POP out top of the stack
-		}
-		maze.changeSpace(t_robot.getRobotLoc(),'-');
-		pastPositionsT.push_back(t_robot.getRobotLoc());
-		pastPosSizeT = pastPositionsT.size();
-		t_robot.setRobotLoc(newPosition);
-	}
-	cout << "The tracked robot has reached the goal!" << endl;
-	
-	/**********************************************************************/
-	while (maze.isGoal(wRobot,w_robot.getTargetLoc())==0) { // This loop will run until the wheeled robot reaches its target
-		while(1) { 
-			// -- Looking Up
-			newPosition = w_robot.Up(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot);
-			if (blocked != true) {
-				// ------- Update stack with "UP"
-				break;
-			}
-			// -- Looking Right
-			newPosition = w_robot.Right(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot);
-			if (blocked != true) {
-				// ------- Update stack with "RIGHT"
-				break;
-			}
-			// -- Looking Down
-			newPosition = w_robot.Down(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot);
-			if (blocked != true) {
-				// ------- Update stack with "DOWN"
-				break;
-			}
-			// -- Looking Left
-			newPosition = w_robot.Left(w_robot.getRobotLoc()[0],w_robot.getRobotLoc()[1]);
-			blocked = maze.isObstacle(newPosition[0],newPosition[1],wRobot);
-			if (blocked != true) {
-				// ------- Update stack with "Left"
-				break;
-			}
-			// -- Backtracking
-			if (pastPosSizeW==0) {
-				cout << "There is no possible path for the Wheeled Robot. Program Cancelled! :(";
-				maze.rewriteX(startW,startT,targetP,targetB); maze.displayMaze();
-				return 0;
-			}
-			maze.changeSpace(w_robot.getRobotLoc(),'Y');
-			for (int i=0; i<pastPosSizeW; ++i) { w_robot.setRobotLoc(pastPositionsW[i]); }
-			pastPositionsW.erase(pastPositionsW.end());
-			pastPosSizeW = pastPositionsW.size();
-			// ------- POP out top of the stack
-		}
-		maze.changeSpace(w_robot.getRobotLoc(),'|');
-		pastPositionsW.push_back(w_robot.getRobotLoc());
-		pastPosSizeW = pastPositionsW.size();
-		w_robot.setRobotLoc(newPosition);
-	}
-	cout << "The wheeled robot has reached the goal!" << endl;
-	
-	/***********************************************************************************/
-	
-	// Remove WrongTurns from Maze, and display maze and paths taken:
-	maze.rewriteX(startW,startT,targetP,targetB);
-	maze.displayMaze();
-	displayPath(pastPositionsT, pastPositionsW, pastPosSizeT, pastPosSizeW, t_robot.getRobotLoc(), w_robot.getRobotLoc());
-	maze.displayMaze();
-	return 0;
-}
-
-/**********************************************************************************************************************************/
-
-vector<int> numericInputs(Maze maze) {
-	int input1, input2;
-	cin >> input1 >> input2;
-	while(!cin) {
-		cin.clear(); // reset failbit
-		cin.ignore(1000,'\n'); //skip bad input
-		cout << "Invalid Entry, non-numeric input. Please reenter the two inputs: ";
-		cin >> input1 >> input2;
-	}
-	vector<int> inputs;
-	inputs = maze.isInputValid(input1, input2);
-	cout << "[" << inputs[0] << "," << inputs[1] << "]" << endl;
-	return inputs;
 }
 
 void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, int sizeT, int sizeW, vector<int> finalT, vector<int> finalW) {
@@ -219,4 +93,56 @@ void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, int sizeT
 		}
 		cout << "[" << finalW[0] << "," << finalW[1] << "]\n" << endl;
 	}
+}
+
+void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, Targets plate, Targets bottle, vector<vector<int>> &pastPos, int &pastPosSize) {
+	bool blocked; // Initializes boolean used for checking open path
+	while (maze->isGoal(robot,robot->getTargetLoc())==0) { // This loop will run until the tracked robot reaches its target
+		while(1) { 
+			// -- Looking Up
+			newPosition = robot->Up(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
+			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
+			if (blocked != true) {
+				// ------- Update stack with "UP"
+				break;
+			}
+			// -- Looking Right
+			newPosition = robot->Right(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
+			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
+			if (blocked != true) {
+				// ------- Update stack with "RIGHT"
+				break;
+			}
+			// -- Looking Down
+			newPosition = robot->Down(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
+			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
+			if (blocked != true) {
+				// ------- Update stack with "DOWN"
+				break;
+			}
+			// -- Looking Left
+			newPosition = robot->Left(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
+			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
+			if (blocked != true) {
+				// ------- Update stack with "Left"
+				break;
+			}
+			// -- Backtracking
+			if (pastPosSize==0) {
+				cout << "There is no possible path for the " << robot->getName() << " Robot! :(\n";
+				return;
+			}
+			maze->changeSpace(robot->getRobotLoc(),robot->getWrongTurnMarker());
+			for (int i=0; i<pastPosSize; ++i) { robot->setRobotLoc(pastPos[i]); }
+			pastPos.erase(pastPos.end());
+			pastPosSize = pastPos.size();
+			// ------- POP out top of the stack
+		}
+		maze->changeSpace(robot->getRobotLoc(),robot->getVisitedMarker());
+		pastPos.push_back(robot->getRobotLoc());
+		pastPosSize = pastPos.size();
+		robot->setRobotLoc(newPosition);
+	}
+	cout << "The " << robot->getName() << " Robot has reached the goal!" << endl;
+	return;
 }

@@ -8,6 +8,12 @@
 
 class MobileRobot {
 private:
+	std::string _name;
+	Targets target;
+	std::vector<int> start_position;
+	std::vector<int> current_position;
+	char visited_marker; // | or -
+	char wrong_turn; // X or Y
 	friend class Maze;
 public:
 //	std::stack<robotstate::RobotState*> state_stack;
@@ -18,9 +24,13 @@ public:
 	virtual std::vector<int> Left(int,int)=0;
 	// update stack method
 //	virtual void update(std::string);
+	virtual void setTargetLoc(std::vector<int>) = 0;
+	virtual void setRobotLoc(std::vector<int>) = 0;
+	virtual std::string getName() = 0;
+	virtual std::vector<int> getStart() = 0;
 	virtual std::vector<int> getRobotLoc() = 0;
 	virtual std::vector<int> getTargetLoc() = 0;
+	virtual char getStartMarker() = 0;
 	virtual char getVisitedMarker() = 0;
 	virtual char getWrongTurnMarker() = 0;
-	virtual std::vector<int> getGoal() = 0;
 };

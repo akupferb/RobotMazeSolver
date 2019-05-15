@@ -74,21 +74,19 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 		maze_arr[x][y] = z;
 }
 
-void Maze::rewriteX(std::vector<int> w, std::vector<int> t, std::vector<int> p, std::vector<int> b) {
+void Maze::rewriteX(MobileRobot* robot, MobileRobot* robot2, std::vector<int> p, std::vector<int> b) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
-			std::vector<int> ij;
-			ij.push_back(i); ij.push_back(j);
 			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
 				 maze_arr[i][j] = ' ';
 			if (maze_arr[i][j] == 'T')
 				 maze_arr[i][j] = '-';
 		}
 	}
-	Maze::changeSpace(t,'t');
-	Maze::changeSpace(w,'w');
-	Maze::changeSpace(p,'p');
-	Maze::changeSpace(b,'b');
+	changeSpace(robot->getStart(),robot->getStartMarker());
+	changeSpace(robot2->getStart(),robot2->getStartMarker());
+	changeSpace(p,'p');
+	changeSpace(b,'b');
 }
 
 void Maze::displayMaze() {
@@ -128,4 +126,19 @@ void Maze::displayMaze() {
 	}
 	cout << "0 1 2 3 4 5";
 	cout << endl;
+}
+
+std::vector<int> Maze::numericInputs() {
+	int input1, input2;
+	std::cin >> input1 >> input2;
+	while(!std::cin) {
+		std::cin.clear(); // reset failbit
+		std::cin.ignore(1000,'\n'); //skip bad input
+		std::cout << "Invalid Entry, non-numeric input. Please reenter the two inputs: ";
+		std::cin >> input1 >> input2;
+	}
+	std::vector<int> inputs;
+	inputs = isInputValid(input1, input2);
+	std::cout << "[" << inputs[0] << "," << inputs[1] << "]" << std::endl;
+	return inputs;
 }

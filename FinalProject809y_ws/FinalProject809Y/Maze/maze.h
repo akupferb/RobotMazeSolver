@@ -46,10 +46,10 @@ public:
 							{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}};
 
 	void displayMaze();
-	void rewriteX(std::vector<int>, std::vector<int>, std::vector<int>, std::vector<int>);
+	void rewriteX(MobileRobot*, MobileRobot*, std::vector<int>, std::vector<int>);
 	bool isObstacle(int, int, MobileRobot*);
 	bool isGoal(MobileRobot*, std::vector<int>);
 	std::vector<int> isInputValid(int, int);
 	void changeSpace(std::vector<int>, char);
-	
+	std::vector<int> numericInputs(); 
 };
