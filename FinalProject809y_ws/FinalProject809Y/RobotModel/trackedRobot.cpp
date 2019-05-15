@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-TrackedRobot::TrackedRobot(Maze* maze) {
+TrackedRobot::TrackedRobot(Maze* maze):MobileRobot() {
 	std::cout << "Please enter the start position for the tracked robot: ";
 	start_position = maze->numericInputs();
 	current_position = getStart();
