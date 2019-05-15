@@ -1,10 +1,8 @@
-
 #pragma once
 #include "Maze/Maze.h"
-#include <fstream>
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 
 class Targets {
 private:

@@ -1,9 +1,8 @@
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
-#include <vector>
 #include <iostream>
-#include <fstream>
+#include <vector>
 #include <string>
 
 using std::cout;
@@ -52,38 +51,44 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 			maze_arr[x][y] = z;
 	}
 	else if (z=='Y') {
-		if (maze_arr[x][y] == '-')
-			maze_arr[x][y] = 'T';
-		else if (maze_arr[x][y] == '+')
+		if (maze_arr[x][y] == '-' || maze_arr[x][y] == '+')
 			maze_arr[x][y] = 'T';
 		else if (maze_arr[x][y] == 'X')
 			maze_arr[x][y] = 'Z';
 		else 
 			maze_arr[x][y] = z;
 	}
-//	else if (z=='-') {
-//		if (maze_arr[x][y] == '|') {
-//			maze_arr[x][y] = '+';
-//		} else {
-//			maze_arr[x][y] = z;
-//		}
-//	}
-	else if (z=='t') {
-		if (maze_arr[x][y] == 'w') {
+	else if (z=='w') {
+		if (maze_arr[x][y] == 't')
 			maze_arr[x][y] = 'S';
-		} else {
+		else
 			maze_arr[x][y] = z;
-		}
 	}
 	else if (z=='b') {
-		if (maze_arr[x][y] == 'p') {
+		if (maze_arr[x][y] == 'p')
 			maze_arr[x][y] = 'G';
-		} else {
+		else
 			maze_arr[x][y] = z;
-		}
 	}
 	else
 		maze_arr[x][y] = z;
+}
+
+void Maze::rewriteX(std::vector<int> w, std::vector<int> t, std::vector<int> p, std::vector<int> b) {
+	for (int i=0; i<31; i++) {
+		for (int j=0; j<46; j++) {
+			std::vector<int> ij;
+			ij.push_back(i); ij.push_back(j);
+			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
+				 maze_arr[i][j] = ' ';
+			if (maze_arr[i][j] == 'T')
+				 maze_arr[i][j] = '-';
+		}
+	}
+	Maze::changeSpace(t,'t');
+	Maze::changeSpace(w,'w');
+	Maze::changeSpace(p,'p');
+	Maze::changeSpace(b,'b');
 }
 
 void Maze::displayMaze() {
@@ -123,21 +128,4 @@ void Maze::displayMaze() {
 	}
 	cout << "0 1 2 3 4 5";
 	cout << endl;
-}
-//
-void Maze::rewriteX(std::vector<int> w, std::vector<int> t, std::vector<int> p, std::vector<int> b) {
-	for (int i=0; i<31; i++) {
-		for (int j=0; j<46; j++) {
-			std::vector<int> ij;
-			ij.push_back(i); ij.push_back(j);
-			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
-				 maze_arr[i][j] = ' ';
-			if (maze_arr[i][j] == 'T')
-				 maze_arr[i][j] = '-';
-		}
-	}
-	Maze::changeSpace(w,'w');
-	Maze::changeSpace(t,'t');
-	Maze::changeSpace(p,'p');
-	Maze::changeSpace(b,'b');
 }

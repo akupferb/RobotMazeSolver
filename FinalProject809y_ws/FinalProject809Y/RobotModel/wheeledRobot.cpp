@@ -2,20 +2,16 @@
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
 #include "RobotModel/WheeledRobot.h"
-#include <vector>
 #include <iostream>
-#include <fstream>
+#include <vector>
 #include <string>
 
 WheeledRobot::WheeledRobot(std::vector<int> xy, std::vector<int> goal) {
-	int x = xy[0]; int y = xy[1];
 	current_position = xy;
-	int xT = goal[0]; int yT = goal[1];
-	while(x == xT && y == yT) {
+	while(xy[0] == goal[0] && xy[1] == goal[1]) {
 		std::cout << "Invalid: wheeled robot & target share position. Please enter different coordinates for target: ";
-		std::cin >> xT >> yT;
+		std::cin >> goal[0] >> goal[1];
 	}
-	goal[0]=xT; goal[1]=yT;
 	target.setTargetLoc(goal);
 }
 

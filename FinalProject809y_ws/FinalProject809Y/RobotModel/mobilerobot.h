@@ -1,12 +1,10 @@
 #pragma once
-
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <string>
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include <stack>
+#include <iostream>
+#include <vector>
+#include <string>
 
 class MobileRobot {
 private:

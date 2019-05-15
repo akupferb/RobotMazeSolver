@@ -1,10 +1,9 @@
 #ifndef TRACKEDROBOT_H
 #define TRACKEDROBOT_H
-
-#include <vector>
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
+#include <vector>
 
 class TrackedRobot: public MobileRobot {
 private:

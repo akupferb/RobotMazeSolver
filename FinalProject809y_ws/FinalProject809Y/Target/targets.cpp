@@ -1,8 +1,7 @@
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
-#include <vector>
 #include <iostream>
-#include <fstream>
+#include <vector>
 #include <string>
 
 Targets::Targets() {

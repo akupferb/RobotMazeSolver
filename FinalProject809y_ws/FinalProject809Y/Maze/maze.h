@@ -1,16 +1,14 @@
 #pragma once
-#include "RobotModel/MobileRobot.h"
 #include "Target/Targets.h"
-#include <fstream>
+#include "RobotModel/MobileRobot.h"
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 
 class Maze {
 private:
 	int n;
 	int m;
-	std::vector<int> start_position;
 	friend class MobileRobot;
 
 public:

@@ -4,7 +4,6 @@
 #include "RobotModel/TrackedRobot.h"
 #include "RobotModel/WheeledRobot.h"
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
 
@@ -28,13 +27,12 @@ int main()
 	std::vector<int> tracked_target;
 	std::vector<int> wheeled_target;
 	/***************************************************************/
-	
-	cout << "Please enter the start position for the wheeled robot: ";
-	startW = numericInputs(maze);
-	maze.changeSpace(startW,'w');
 	cout << "Please enter the start position for the tracked robot: ";
 	startT = numericInputs(maze);
 	maze.changeSpace(startT,'t');
+	cout << "Please enter the start position for the wheeled robot: ";
+	startW = numericInputs(maze);
+	maze.changeSpace(startW,'w');
 	cout << "Please enter the coordinates for the plate target: ";
 	targetP = numericInputs(maze);
 	cout << "Please enter the coordinates for the bottle target: ";
@@ -63,9 +61,6 @@ int main()
 		targetB = w_robot.getTargetLoc(); targetP = t_robot.getTargetLoc();
 		cout << "\ntracked = plate, wheeled = bottle\n" << endl;
 	}
-	/*********************************************************************/
-	
-//	maze.displayMaze();
 	
 	/*********************** Main Code Section: **************************/
 	while (maze.isGoal(tRobot,t_robot.getTargetLoc())==0) { // This loop will run until the tracked robot reaches its target
