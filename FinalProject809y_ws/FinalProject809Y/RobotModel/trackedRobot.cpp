@@ -7,6 +7,7 @@
 #include "RobotState/RightState.h"
 #include "RobotState/LeftState.h"
 #include "RobotState/DownState.h"
+#include "RobotState/StuckState.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -82,5 +83,9 @@ void TrackedRobot::update(std::string action){
 		state->update(state_stack);
 		delete state;
 	}
-
+		{
+		RobotState* state = new StuckState();
+		state->update(state_stack);
+		delete state;
+	}
 }

@@ -168,6 +168,7 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 			pastPos.erase(pastPos.end());
 			pastPosSize = pastPos.size();
 			// ------- POP out top of the stack
+//			robot->update("stuck");
 		}
 		maze->changeSpace(robot->getRobotLoc(),robot->getVisitedMarker());
 		pastPos.push_back(robot->getRobotLoc());

@@ -7,6 +7,7 @@
 #include "RobotState/LeftState.h"
 #include "RobotState/RightState.h"
 #include "RobotState/RobotState.h"
+#include "RobotState/StuckState.h"
 #include "RobotModel/MobileRobot.h"
 #include <vector>
 #include <iostream>
