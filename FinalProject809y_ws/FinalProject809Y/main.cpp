@@ -62,7 +62,7 @@ void findPath(Maze*, MobileRobot*, MobileRobot*, vector<vector<int>> &, int &);
 * @param sizeW The size of the past positions vector of the Wheeled Robot
 * @return None
 */
-void displayPath(vector<vector<int>>, vector<vector<int>>, vector<int>, vector<int>, int, int);
+void displayPath(vector<vector<int>>, vector<vector<int>>, vector<int>, vector<int>, int, int, stack<char>, stack<char>);
 
 vector<vector<int>> pastPosTracked; ///< Initialize variable to store tracked robot positions
 int sizeTracked = pastPosTracked.size(); ///< Initialize variable to store size of tracked robot positions vector
@@ -97,7 +97,7 @@ int main()
 	maze.rewrite(tracked_pointer,wheeled_pointer,plate.getTargetLoc(),bottle.getTargetLoc());
 	maze.displayMaze();
 	// display indeces of paths taken by both robots:
-	displayPath(pastPosTracked, pastPosWheeled, tracked_robot.getRobotLoc(), wheeled_robot.getRobotLoc(), sizeTracked, sizeWheeled);
+	displayPath(pastPosTracked, pastPosWheeled, tracked_robot.getRobotLoc(), wheeled_robot.getRobotLoc(), sizeTracked, sizeWheeled, tracked_robot.state_stack, wheeled_robot.state_stack);
 	maze.displayMaze();
 	return 0;
 }
@@ -134,28 +134,28 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 			newPosition = robot->Up(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
 			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
 			if (blocked != true) {
-				robot->update("up");
+				robot->update("up"); // Add 'u' to the stack
 				break;
 			}
 			// -- Looking Right
 			newPosition = robot->Right(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
 			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
 			if (blocked != true) {
-				robot->update("right");
+				robot->update("right"); // Add 'r' to the stack
 				break;
 			}
 			// -- Looking Down
 			newPosition = robot->Down(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
 			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
 			if (blocked != true) {
-				robot->update("down");
+				robot->update("down"); // Add 'd' to the stack
 				break;
 			}
 			// -- Looking Left
 			newPosition = robot->Left(robot->getRobotLoc()[0],robot->getRobotLoc()[1]);
 			blocked = maze->isObstacle(newPosition[0],newPosition[1],robot);
 			if (blocked != true) {
-				robot->update("left");
+				robot->update("left"); // Add 'l' to the stack
 				break;
 			}
 			// -- Backtracking
@@ -167,8 +167,7 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 			for (int i=0; i<pastPosSize; ++i) { robot->setRobotLoc(pastPos[i]); }
 			pastPos.erase(pastPos.end());
 			pastPosSize = pastPos.size();
-			// ------- POP out top of the stack
-//			robot->update("stuck");
+			robot->state_stack.pop(); // pop the top of the stack
 		}
 		maze->changeSpace(robot->getRobotLoc(),robot->getVisitedMarker());
 		pastPos.push_back(robot->getRobotLoc());
@@ -182,7 +181,7 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 	return;
 }
 
-void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, vector<int> finalT, vector<int> finalW, int sizeT, int sizeW) {
+void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, vector<int> finalT, vector<int> finalW, int sizeT, int sizeW, stack<char> stateT, stack<char> stateW) {
 	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
 	cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
 	cout << "'b' = bottle target\n'p' = plate target\n";

@@ -20,15 +20,15 @@ private:
 public:
 	std::stack<char> state_stack;
 	// Setters & Getters
-	virtual void setTargetLoc(std::vector<int> pos) { target = pos; }
-	virtual void setRobotLoc(std::vector<int> pos) { current_position = pos; }
-	virtual std::string getName() const { return _name; }
-	virtual std::vector<int> getStart() const { return start_position; }
-	virtual std::vector<int> getRobotLoc() const { return current_position; }
-	virtual std::vector<int> getTargetLoc() const { return target; }
-	virtual char getStartMarker() const { return start_marker; }
-	virtual char getVisitedMarker() const { return visited_marker; }
-	virtual char getWrongTurnMarker() const { return wrong_turn; }
+	virtual void setTargetLoc(std::vector<int>) = 0;
+	virtual void setRobotLoc(std::vector<int>) = 0;
+	virtual std::string getName() = 0;
+	virtual std::vector<int> getStart() = 0;
+	virtual std::vector<int> getRobotLoc() = 0;
+	virtual std::vector<int> getTargetLoc() = 0;
+	virtual char getStartMarker() = 0;
+	virtual char getVisitedMarker() = 0;
+	virtual char getWrongTurnMarker() = 0;
 //	// Methods
 	virtual std::vector<int> checkTarget(std::vector<int>) = 0;
 	virtual std::vector<int> Up(int,int)=0;

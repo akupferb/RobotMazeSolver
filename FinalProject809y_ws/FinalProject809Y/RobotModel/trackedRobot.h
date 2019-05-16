@@ -18,15 +18,15 @@ public:
 	TrackedRobot(); // No args constructor
 	TrackedRobot(Maze*); // Constructor
 	// Setters & Getters
-	virtual void setTargetLoc(std::vector<int> pos) { target = pos; }
-	virtual void setRobotLoc(std::vector<int> pos) { current_position = pos; }
-	virtual std::string getName() const { return _name; }
-	virtual std::vector<int> getStart() const { return start_position; }
-	virtual std::vector<int> getRobotLoc() const { return current_position; }
-	virtual std::vector<int> getTargetLoc() const { return target; }
-	virtual char getStartMarker() const { return start_marker; }
-	virtual char getVisitedMarker() const { return visited_marker; }
-	virtual char getWrongTurnMarker() const { return wrong_turn; }
+	virtual void setTargetLoc(std::vector<int> pos) override { target = pos; }
+	virtual void setRobotLoc(std::vector<int> pos) override { current_position = pos; }
+	virtual std::string getName() override { return _name; }
+	virtual std::vector<int> getStart() override { return start_position; }
+	virtual std::vector<int> getRobotLoc() override { return current_position; }
+	virtual std::vector<int> getTargetLoc() override { return target; }
+	virtual char getStartMarker() override { return start_marker; }
+	virtual char getVisitedMarker() override { return visited_marker; }
+	virtual char getWrongTurnMarker() override { return wrong_turn; }
 	// Methods
 	virtual void update(std::string);
 	virtual std::vector<int> checkTarget(std::vector<int>);

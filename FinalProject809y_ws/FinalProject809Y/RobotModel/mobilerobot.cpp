@@ -7,7 +7,6 @@
 #include "RobotState/LeftState.h"
 #include "RobotState/RightState.h"
 #include "RobotState/RobotState.h"
-#include "RobotState/StuckState.h"
 #include "RobotModel/MobileRobot.h"
 #include <vector>
 #include <iostream>
@@ -15,7 +14,7 @@
 
 void MobileRobot::showStack(std::stack <char> state_stack){
 	while (!state_stack.empty()) {
-		std::cout << state_stack.top() << std::endl;
+		std::cout << state_stack.top() << "\t";
 		state_stack.pop();
 	}
 	std::cout << std::endl;

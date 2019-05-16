@@ -7,7 +7,6 @@
 #include "RobotState/RightState.h"
 #include "RobotState/LeftState.h"
 #include "RobotState/DownState.h"
-#include "RobotState/StuckState.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -81,12 +80,6 @@ void WheeledRobot::update(std::string action){
 	if(action=="left")
 	{
 		RobotState* state = new LeftState();
-		state->update(state_stack);
-		delete state;
-	}
-		if(action=="stuck")
-	{
-		RobotState* state = new StuckState();
 		state->update(state_stack);
 		delete state;
 	}

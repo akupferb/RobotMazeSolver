@@ -6,8 +6,6 @@
     </Plugin>
   </Plugins>
   <VirtualDirectory Name="RobotState">
-    <File Name="RobotState/StuckState.cpp"/>
-    <File Name="RobotState/StuckState.h"/>
     <File Name="RobotState/LeftState.cpp"/>
     <File Name="RobotState/LeftState.h"/>
     <File Name="RobotState/RightState.cpp"/>
