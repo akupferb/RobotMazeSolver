@@ -2,6 +2,11 @@
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
 #include "RobotModel/TrackedRobot.h"
+#include "RobotState/RobotState.h"
+#include "RobotState/UpState.h"
+#include "RobotState/RightState.h"
+#include "RobotState/LeftState.h"
+#include "RobotState/DownState.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,26 +19,14 @@ TrackedRobot::TrackedRobot(Maze* maze) {
 	maze->changeSpace(getStart(),'t');
 }
 
-std::string TrackedRobot::getName() {
-	return _name;
-}
-std::vector<int> TrackedRobot::getStart() {
-	return start_position;
-}
-std::vector<int> TrackedRobot::getRobotLoc() {
-	return current_position;
-}
-std::vector<int> TrackedRobot::getTargetLoc() {
-	return target;
-}
-char TrackedRobot::getStartMarker() {
-	return start_marker;
-}
-char TrackedRobot::getVisitedMarker() {
-	return visited_marker;
-}
-char TrackedRobot::getWrongTurnMarker() {
-	return wrong_turn;
+std::vector<int> TrackedRobot::checkTarget(std::vector<int> goal) {
+	
+	while(getStart()[0] == goal[0] && getStart()[1] == goal[1]) {
+		std::cout << "Invalid: tracked robot & target share position. Please enter different coordinates for target: ";
+		std::cin >> goal[0] >> goal[1];
+	}
+	setTargetLoc(goal);
+	return goal;
 }
 
 std::vector<int> TrackedRobot::Up(int x,int y){
@@ -62,4 +55,32 @@ std::vector<int> TrackedRobot::Left(int x,int y){
 	y=y-1;
 	std::vector<int> left{x,y};
 	return left;
+}
+
+void TrackedRobot::update(std::string action){
+	if (action=="up")
+	{
+		RobotState* state = new UpState();
+		state->update(state_stack);
+		delete state;
+	}
+	if (action=="right")
+	{
+		RobotState* state = new RightState();
+		state->update(state_stack);
+		delete state;
+	}
+	if (action=="down")
+	{
+		RobotState* state = new DownState();
+		state->update(state_stack);
+		delete state;
+	}
+	if(action=="left")
+	{
+		RobotState* state = new LeftState();
+		state->update(state_stack);
+		delete state;
+	}
+
 }

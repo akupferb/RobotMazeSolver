@@ -32,7 +32,7 @@ bool Maze::isGoal(MobileRobot* robot, std::vector<int> goal) {
 
 std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>=n||start_y<0||start_y>=m) {
-		cout<< "Invalid input position. Please enter different coordinates: ";
+		cout<< "Invalid input, position is obstacle or outside maze. Please enter different coordinates: ";
 		cin>>start_x>>start_y;
 	}
 	std::vector<int> vec;
@@ -41,6 +41,13 @@ std::vector<int> Maze::isInputValid(int start_x, int start_y) {
 	return vec;
 }
 
+/**
+* The many "if" statements in this function account for the different possible characters that can already occupy
+* the space to be overwritten. If it's part of the robot's path, and the other robot has crossed that path, a '+' 
+* is used. If the robot is backtracking, and the other robot has crossed that path, a 'T' is used. If both robots
+* have backtracked, a 'Z' is used. If both robot start positions are the same, an 'S' is used, and if the targets
+* are the same, a 'G' is used. These conditions ensure that the second robot does not erase the first robot's path.
+*/
 void Maze::changeSpace(std::vector<int> xy, char z) {
 	int x = xy[0]; int y = xy[1];
 	if (z=='|') {
@@ -75,7 +82,13 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 		maze_arr[x][y] = z;
 }
 
-void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> p, std::vector<int> b) {
+/**
+* The function looks for any of the three markers that represent only a wrong turn space, and replaces that 
+* character with an open space. If a 'T' if found, that means that it is a right path for the tracked robot
+* and wrong turn for the wheeled robot, so the tracked robot path character '-' is replaced. Finally, the 
+* start positions of the robots, and the target positions are placed in at the end.
+*/
+void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> plate, std::vector<int> bottle) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
 			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
@@ -86,8 +99,8 @@ void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> p, 
 	}
 	changeSpace(robot->getStart(),robot->getStartMarker());
 	changeSpace(robot2->getStart(),robot2->getStartMarker());
-	changeSpace(p,'p');
-	changeSpace(b,'b');
+	changeSpace(plate,'p');
+	changeSpace(bottle,'b');
 }
 
 void Maze::displayMaze() {

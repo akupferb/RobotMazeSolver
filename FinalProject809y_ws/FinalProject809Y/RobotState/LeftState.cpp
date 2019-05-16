@@ -1,5 +1,5 @@
 #include "LeftState.h"
 
-void LeftState::update(std::stack<RobotState*>& state_stack){
-		state_stack.push(this);
+void LeftState::update(std::stack<char>& state_stack){
+		state_stack.push('L');
 } 

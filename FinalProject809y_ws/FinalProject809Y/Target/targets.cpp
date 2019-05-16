@@ -4,9 +4,7 @@
 #include <vector>
 #include <string>
 
-Targets::Targets() {
-
-}
+Targets::Targets() {}
 
 Targets::Targets(std::vector<int> vec) {
 	position = vec;

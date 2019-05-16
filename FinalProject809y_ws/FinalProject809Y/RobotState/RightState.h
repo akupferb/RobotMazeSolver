@@ -6,7 +6,7 @@
 class RightState: public RobotState
 {
 public:
-	virtual void update(std::stack<RobotState*>&) override;
+	virtual void update(std::stack<char>&) override;
 	virtual ~RightState(){};
 };
 

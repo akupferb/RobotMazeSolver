@@ -11,7 +11,7 @@ public:
 	std::string state_;
 	RobotState(std::string state="RobotState"):state_{state}{}
 	// methods
-	virtual void update(std::stack<RobotState*>&){}
+	virtual void update(std::stack<char>&){}
 	virtual ~RobotState(){};
 };
 

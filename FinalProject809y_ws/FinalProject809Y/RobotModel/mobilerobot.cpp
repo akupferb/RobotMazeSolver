@@ -12,26 +12,10 @@
 #include <iostream>
 #include <string>
 
-void MobileRobot::update(std::string action){
-	if (action=="up") {
-		RobotState* state = new UpState();
-		if (state_stack.empty())
-			state->update(state_stack);
-		delete state;
+void MobileRobot::showStack(std::stack <char> state_stack){
+	while (!state_stack.empty()) {
+		std::cout << state_stack.top() << std::endl;
+		state_stack.pop();
 	}
-	if (action=="right") {
-		RobotState* state = new RightState();
-		state->update(state_stack);
-		delete state;
-	}
-	if (action=="down") {
-		RobotState* state = new DownState();
-		state->update(state_stack);
-		delete state;
-	}
-	if(action=="left") {
-		RobotState* state = new LeftState();
-		state->update(state_stack);
-		delete state;
-	}
+	std::cout << std::endl;
 }

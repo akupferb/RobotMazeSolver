@@ -1,5 +1,5 @@
 #include "UpState.h"
 
-void UpState::update(std::stack<RobotState*>& state_stack){
-		state_stack.push(this);
+void UpState::update(std::stack<char>& state_stack){
+		state_stack.push('U');
 }

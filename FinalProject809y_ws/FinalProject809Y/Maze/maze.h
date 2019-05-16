@@ -1,5 +1,12 @@
+/**
+ * @class Maze
+ * @file maze.h
+ * @author Ari Kupferberg, Bharat Mathur, Brenda Scheufele, Jagadesh Nagireddi, Raja Iskala
+ * @date 20/05/19
+ * @brief This header file defines the Maze class and its associated functions
+ */
 #pragma once
-//#include "Target/Targets.h"
+#include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
 #include <iostream>
 #include <vector>
@@ -13,7 +20,7 @@ private:
 
 public:
 	Maze();
-	char maze_arr[31][46] = 
+	char maze_arr[31][46] = ///< This is the 31x46 character array that represents the hard-coded maze
 	{{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
 	{'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
 	{'#',' ',' ','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#',' ',' ','#','#','#','#',' ',' ','#'},
@@ -46,11 +53,58 @@ public:
 	{'#',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},
 	{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',' ',' ','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}};
 
+	/**
+	* @brief This function uses a series of loops to display the maze with borders and numbering
+	* @return None
+	*/
 	void displayMaze();
+	
+	/**
+	* @brief This function checks if the input position is blocked by an obstacle of some sort
+	* @param x The x position index
+	* @param y The y position index
+	* @param robot A pointer to the robot in question
+	* @return Boolean
+	*/
 	bool isObstacle(int, int, MobileRobot*);
+	
+	/**
+	* @brief This function compares the robot position to its target goal
+	* @param robot A pointer to the robot in question
+	* @param goal The position of the target goal
+	* @return Boolean
+	*/
 	bool isGoal(MobileRobot*, std::vector<int>);
-	void changeSpace(std::vector<int>, char);
-	void rewrite(MobileRobot*, MobileRobot*, std::vector<int>, std::vector<int>);
+	
+	/**
+	* @brief This function iteratively checks if the input is a valid open position in the maze
+	* @param start_x x index
+	* @param start_y y index
+	* @return Vector of confirmed position
+	*/
 	std::vector<int> isInputValid(int, int);
+	
+	/**
+	* @brief This function overwrites an input maze position with a character
+	* @param xy The vector for the maze position
+	* @param z The character to overwrite in the maze
+	* @return None
+	*/
+	void changeSpace(std::vector<int>, char);
+	
+	/**
+	* @brief This function cleans up the wrong turn markers found in the maze from backtracking
+	* @param robot A pointer to the tracked robot
+	* @param robot2 A pointer to the wheeled robot
+	* @param plate The plate target, passed by reference
+	* @param bottle The bottle target, passed by reference
+	* @return None
+	*/
+	void rewrite(MobileRobot*, MobileRobot*, std::vector<int>, std::vector<int>);
+	
+	/**
+	* @brief This function checks that all inputs are valid numbers
+	* @return Vector of confirmed numeric inputs
+	*/
 	std::vector<int> numericInputs(); 
 };
