@@ -17,7 +17,7 @@ public:
 	/**
 	 * @brief This is a pure virtual method definition for updating the stack with the robot state
 	*/
-	virtual void update(std::stack<char>&){}
+	virtual void update(std::stack<char>&) = 0;
 	/**
 	 * @brief This is a virtual destructor
 	*/

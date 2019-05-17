@@ -59,8 +59,6 @@ stack<char> findPath(Maze*, MobileRobot*, MobileRobot*, vector<vector<int>> &, i
 * It displays the results with related headers.
 * @param pastT A 2D vector of past positions of the Tracked Robot
 * @param pastW A 2D vector of past positions of the Wheeled Robot
-* @param finalT The final position of the Tracked Robot
-* @param finalW The final position of the Wheeled Robot
 * @param sizeT The size of the past positions vector of the Tracked Robot
 * @param sizeW The size of the past positions vector of the Wheeled Robot
 * @param stackT The state stack for the Tracked Robot
