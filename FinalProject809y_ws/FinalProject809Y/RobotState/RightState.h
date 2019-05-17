@@ -17,7 +17,7 @@ class RightState: public RobotState
 public:
 	/**
 	 * @brief This function pushes the 'RIGHT' robot state to the top of the stack as a character 'R'
-	 * @param The stack of characters to which the actions are being pushed
+	 * @param state_stack The stack of characters to which the actions are being pushed
 	 * @return None
 	*/
 	virtual void update(std::stack<char>&) override;
