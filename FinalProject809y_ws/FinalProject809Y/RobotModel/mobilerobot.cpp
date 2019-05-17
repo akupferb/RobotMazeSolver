@@ -1,11 +1,3 @@
-/**
- * @class MobileRobot
- * @author Jagadesh Nischal, Raja Iskala, Bharat Mathur, Ari Kupferberg,Brenda Scheufele
- * @date 12/05/2019
- * @file MobileRobot.cpp
- * @brief This file describes Mobile Robot class which defines the robot model and its methods. This is a base class.
- */
-
 
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
@@ -19,13 +11,12 @@
 #include <vector>
 #include <iostream>
 #include <string>
-	/**
-	 * @brief This is a overridden method implementation which displays the robot states from the stack.
-	*/
-void MobileRobot::showStack(std::stack <char> state_stack){
+
+std::stack<char> MobileRobot::reverseStack(std::stack<char> state_stack){
+	std::stack<char> reversed_stack;
 	while (!state_stack.empty()) {
-		std::cout << state_stack.top() << "\t";
+		reversed_stack.push(state_stack.top());
 		state_stack.pop();
 	}
-	std::cout << std::endl;
+	return reversed_stack;
 }

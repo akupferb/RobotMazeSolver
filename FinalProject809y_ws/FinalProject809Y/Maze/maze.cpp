@@ -30,14 +30,14 @@ bool Maze::isGoal(MobileRobot* robot, std::vector<int> goal) {
 	}
 }
 
-std::vector<int> Maze::isInputValid(int start_x, int start_y) {
-	while(maze_arr[start_x][start_y]=='#'||start_x<0||start_x>=n||start_y<0||start_y>=m) {
+std::vector<int> Maze::isInputValid(int x, int y) {
+	while( maze_arr[x][y]=='#' || x<0 || x>=n || y<0 || y>=m ) {
 		cout<< "Invalid input, position is obstacle or outside maze. Please enter different coordinates: ";
-		cin>>start_x>>start_y;
+		cin >> x >> y;
 	}
 	std::vector<int> vec;
-	vec.push_back(start_x);
-	vec.push_back(start_y);
+	vec.push_back(x);
+	vec.push_back(y);
 	return vec;
 }
 

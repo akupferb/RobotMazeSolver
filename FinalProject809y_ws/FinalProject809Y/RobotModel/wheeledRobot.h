@@ -1,14 +1,12 @@
-#ifndef WHEELEDROBOT_H
-#define WHEELEDROBOT_H
-
 /**
  * @class WheeledRobot
- * @author Jagadesh Nischal, Raja Iskala, Bharat Mathur, Ari Kupferberg,Brenda Scheufele
- * @date 12/05/2019
+ * @author Ari Kupferberg, Bharat Mathur, Brenda Scheufele, Jagadesh Nagireddi, Raja Iskala
+ * @date 20/05/19
  * @file WheeledRobot.h
- * @brief This is a derived class from MobileRobot. This file describes a class for the wheeled robot model and its methods.
+ * @brief This header file defines the WheeledRobot class and its associated data members and methods. It is a derived class from MobileRobot.
  */
-
+#ifndef WHEELEDROBOT_H
+#define WHEELEDROBOT_H
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
 #include "RobotModel/MobileRobot.h"
@@ -25,44 +23,97 @@ private:
 	char wrong_turn = 'Y';
 public:
 	WheeledRobot(); // No args constructor
-	WheeledRobot(Maze*); // Constructor
-	// Setters & Getters
-	virtual void setTargetLoc(std::vector<int> pos) override { target = pos; }
-	virtual void setRobotLoc(std::vector<int> pos) override { current_position = pos; }
-	virtual std::string getName() override { return _name; }
-	virtual std::vector<int> getStart() override { return start_position; }
-	virtual std::vector<int> getRobotLoc() override { return current_position; }
-	virtual std::vector<int> getTargetLoc() override { return target; }
-	virtual char getStartMarker() override { return start_marker; }
-	virtual char getVisitedMarker() override { return visited_marker; }
-	virtual char getWrongTurnMarker() override { return wrong_turn; }
-	// Methods
 	/**
-	 * @brief This is a virtual method definition which pushes the current robot state to the stack.
+	* @brief This is a 1 args constructor
+	* 
+	* This constructor prompts the user to enter the robot starting position. It then checks that the position
+	* is a valid input for the maze, updates the start and current position of the robot, and defines the robot name.
+	* @param maze A pointer to the maze
 	*/
-	virtual void update(std::string);
+	WheeledRobot(Maze*);
+	
+	/**
+	* @brief This is an override setter for the robot's target
+	* @param pos Position to set for robot's target
+	*/
+	virtual void setTargetLoc(std::vector<int> pos) override { target = pos; }
+	/**
+	* @brief This is an override setter for the robot's current position
+	* @param pos Position to set for robot
+	*/
+	virtual void setRobotLoc(std::vector<int> pos) override { current_position = pos; }
+	/**
+	* @brief This is an override getter for the robot's name
+	* @return String of robot name
+	*/
+	virtual std::string getName() override { return _name; }
+	/**
+	* @brief This is an override getter for the robot's start position
+	* @return Vector of robot start position
+	*/
+	virtual std::vector<int> getStart() override { return start_position; }
+	/**
+	* @brief This is an override getter for the robot's current position
+	* @return Vector of robot current position
+	*/
+	virtual std::vector<int> getRobotLoc() override { return current_position; }
+	/**
+	* @brief This is an override getter for the robot's target
+	* @return Vector of robot target position
+	*/
+	virtual std::vector<int> getTargetLoc() override { return target; }
+	/**
+	* @brief This is an override getter for the robot's start marker
+	* @return Character of robot start marker
+	*/
+	virtual char getStartMarker() override { return start_marker; }
+	/**
+	* @brief This is an override getter for the robot's path marker
+	* @return Character of robot path marker
+	*/
+	virtual char getVisitedMarker() override { return visited_marker; }
+	/**
+	* @brief This is an override getter for the robot's backtracking marker
+	* @return Character of robot backtracking marker
+	*/
+	virtual char getWrongTurnMarker() override { return wrong_turn; }
+	
+	/**
+	* @brief This is an override function that checks that the target does not share its position with the robot start
+	* @param goal Vector of the target position
+	* @return Vector of the confirmed target position
+	*/
 	virtual std::vector<int> checkTarget(std::vector<int>);
-		/**
-	 * @brief This is an overridden method of base class for moving the robot up.
-	 * @return Vector of new (x,y) co-ordinates
+	/**
+	 * @brief This is an override function that obtains the "up" coordinates of the robot
+	 * @param x,y The 2D coordinates of current position
+	 * @return Vector of new coordinates
 	 */
 	virtual std::vector<int> Up(int,int);
-		/**
-	 * @brief This is an overridden method of base class for moving the robot down.
-	 * @return Vector of new (x,y) co-ordinates
+	/**
+	 * @brief This is an override function that obtains the "down" coordinates of the robot
+	 * @param x,y The 2D coordinates of current position
+	 * @return Vector of new coordinates
 	 */
 	virtual std::vector<int> Down(int,int);
-		/**
-	 * @brief This is an overridden method of base class for moving the robot right.
-	 * @return Vector of new (x,y) co-ordinates
+	/**
+	 * @brief This is an override function that obtains the "right" coordinates of the robot
+	 * @param x,y The 2D coordinates of current position
+	 * @return Vector of new coordinates
 	 */
 	virtual std::vector<int> Right(int,int);
-		/**
-	 * @brief This is an overridden method of base class for moving the robot left.
-	 * @return Vector of new (x,y) co-ordinates
+	/**
+	 * @brief This is an override function that obtains the "left" coordinates of the robot
+	 * @param x,y The 2D coordinates of current position
+	 * @return Vector of new coordinates
 	 */
 	virtual std::vector<int> Left(int,int);
-	virtual ~WheeledRobot(){}; // ~Destructor
+	/**
+	 * @brief This function pushes the current robot state to the top of the stack
+	 * @param action A string of the direction of the robot action
+	 * @return None
+	*/
+	virtual void update(std::string);
 };
 
 #endif // WHEELEDROBOT_H

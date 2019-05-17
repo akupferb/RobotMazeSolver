@@ -46,20 +46,23 @@ void connectTarget(MobileRobot*, MobileRobot*, Targets &, Targets &);
 * @param robot2 A pointer to the other robot
 * @param pastPos A 2D vector of past positions passed by reference
 * @param pastPosSize The size of the 2D vector passed by reference
-* @return None
+* @return Stack of characters for robot states
 */
-void findPath(Maze*, MobileRobot*, MobileRobot*, vector<vector<int>> &, int &);
+stack<char> findPath(Maze*, MobileRobot*, MobileRobot*, vector<vector<int>> &, int &);
 /**
-* @brief This function displays the indeces of the paths taken by both robots
+* @brief This function displays the indices and directions of the paths taken by both robots
 * 
 * The function displays the order of moves taken by both robots, showing the longer path on the
-* left by checking the size variables. It then displays the results with related headers.
+* left by checking the size variables. It also displays the direction of moves made from the stack.
+* It displays the results with related headers.
 * @param pastT A 2D vector of past positions of the Tracked Robot
 * @param pastW A 2D vector of past positions of the Wheeled Robot
 * @param finalT The final position of the Tracked Robot
 * @param finalW The final position of the Wheeled Robot
 * @param sizeT The size of the past positions vector of the Tracked Robot
 * @param sizeW The size of the past positions vector of the Wheeled Robot
+* @param stackT The state stack for the Tracked Robot
+* @param stackW The state stack for the Wheeled Robot
 * @return None
 */
 void displayPath(vector<vector<int>>, vector<vector<int>>, vector<int>, vector<int>, int, int, stack<char>, stack<char>);
@@ -89,15 +92,15 @@ int main()
 	
 	/************************ Maze Solver: **************************/
 	// Solve path for Tracked Robot:
-	findPath(maze_pointer, tracked_pointer, wheeled_pointer, pastPosTracked, sizeTracked);
+	stack<char> tracked_stack = findPath(maze_pointer, tracked_pointer, wheeled_pointer, pastPosTracked, sizeTracked);
 	// Solve path for Wheeled Robot:
-	findPath(maze_pointer, wheeled_pointer, tracked_pointer, pastPosWheeled, sizeWheeled);
-	
+	stack<char> wheeled_stack = findPath(maze_pointer, wheeled_pointer, tracked_pointer, pastPosWheeled, sizeWheeled);
+			cout << "size of [tstack, wstack]: [" << tracked_stack.size() << "," << wheeled_stack.size() << "]" << endl;
 	// Remove WrongTurns from Maze, and display maze and paths taken:
 	maze.rewrite(tracked_pointer,wheeled_pointer,plate.getTargetLoc(),bottle.getTargetLoc());
 	maze.displayMaze();
-	// display indeces of paths taken by both robots:
-	displayPath(pastPosTracked, pastPosWheeled, tracked_robot.getRobotLoc(), wheeled_robot.getRobotLoc(), sizeTracked, sizeWheeled, tracked_robot.state_stack, wheeled_robot.state_stack);
+	// Display indices of paths taken by both robots:
+	displayPath(pastPosTracked, pastPosWheeled, tracked_robot.getRobotLoc(), wheeled_robot.getRobotLoc(), sizeTracked, sizeWheeled, tracked_stack, wheeled_stack);
 	maze.displayMaze();
 	return 0;
 }
@@ -125,7 +128,7 @@ void connectTarget(MobileRobot* tRobot, MobileRobot* wRobot, Targets &plate, Tar
 	}
 }
 
-void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector<int>> &pastPos, int &pastPosSize) {
+stack<char> findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector<int>> &pastPos, int &pastPosSize) {
 	vector<int> newPosition;
 	bool blocked;
 	while (maze->isGoal(robot,robot->getTargetLoc())==0) { // This loop will run until the tracked robot reaches its target
@@ -161,7 +164,8 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 			// -- Backtracking
 			if (pastPosSize==0) {
 				cout << "There is no possible path for the " << robot->getName() << " Robot! :(\n";
-				return;
+				stack<char> blank;
+				return blank;
 			}
 			maze->changeSpace(robot->getRobotLoc(),robot->getWrongTurnMarker());
 			for (int i=0; i<pastPosSize; ++i) { robot->setRobotLoc(pastPos[i]); }
@@ -175,40 +179,50 @@ void findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector<vector
 		robot->setRobotLoc(newPosition);
 	}
 	cout << "The " << robot->getName() << " Robot has reached the goal!" << endl;
-	cout << "The stack of the " << robot->getName() << " robot" << endl;
-	stack<char> _state_stack = robot->state_stack;
-	robot->showStack(_state_stack);
-	return;
+	stack<char> empty_stack;
+	stack<char> robot_stack = robot->reverseStack(robot->state_stack);
+	robot->state_stack.swap(empty_stack);
+	return robot_stack;
 }
+
 
 void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, vector<int> finalT, vector<int> finalW, int sizeT, int sizeW, stack<char> stateT, stack<char> stateW) {
 	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
 	cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
 	cout << "'b' = bottle target\n'p' = plate target\n";
-		 // Loops through all past positions to display direct maze path
+	// Loops through all past positions to display direct maze path
 	if (sizeT >= sizeW) {
-		cout << "\nThe maze paths for the tracked robot and wheeled robots are:\n   t      w   \n";
-		for (int i=0; i<sizeT; ++i) {
-			if (i<sizeW)
-				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] ["<<pastW[i][0]<<","<<pastW[i][1]<<"]"<<endl;
-			else if (i==sizeW)
-				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] ["<<finalW[0]<<","<<finalW[1]<<"]"<<endl;
-			else 
-				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"]"<<endl;
-		}
-		cout<<"["<<finalT[0]<<","<<finalT[1]<<"]\n"<<endl;
-	}
-	if (sizeW > sizeT) {
-		cout << "\nThe maze paths for the wheeled robot and tracked robots are:\n   w      t   \n";
-		for (int i=0; i<sizeW; ++i) {
-			if (i<sizeT)
-				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] ["<<pastT[i][0]<<","<<pastT[i][1]<<"]"<<endl;
-			else if (i==sizeT)
-				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] ["<<finalT[0]<<","<<finalT[1]<<"]"<<endl;
-			else {
-				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"]"<<endl;
+		cout << "\nThe maze paths for the tracked and wheeled robots, respectively, are:\n  t          w\n";
+		cout<<"["<<pastT[0][0]<<","<<pastT[0][1]<<"]    ["<<pastW[0][0]<<","<<pastW[0][1]<<"] "<<endl;
+		for (int i=1; i<sizeT; ++i) {
+			if (i<sizeW) {
+				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<"  ["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<endl;
+				stateT.pop(); stateW.pop();
+			} else if (i==sizeW) {
+				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<"  ["<<finalW[0]<<","<<finalW[1]<<"] "<<stateW.top()<<endl;
+				stateT.pop(); stateW.pop();
+			} else {
+				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<endl;
+				stateT.pop();
 			}
 		}
-		cout<<"["<<finalW[0]<<","<<finalW[1]<<"]\n"<<endl;
+		cout<<"["<<finalT[0]<<","<<finalT[1]<<"] "<<stateT.top()<<endl;
+	}
+	if (sizeW > sizeT) {
+		cout << "\nThe maze paths for the wheeled and tracked robots, respectively, are:\n  w          t\n";
+		cout<<"["<<pastW[0][0]<<","<<pastW[0][1]<<"]    ["<<pastT[0][0]<<","<<pastT[0][1]<<"] "<<endl;
+		for (int i=1; i<sizeW; ++i) {
+			if (i<sizeT) {
+				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<"  ["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<endl;
+				stateW.pop(); stateT.pop();
+			} else if (i==sizeT) {
+				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<"  ["<<finalT[0]<<","<<finalT[1]<<"] "<<stateT.top()<<endl;
+				stateW.pop(); stateT.pop();
+			} else {
+				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<endl;
+				stateW.pop();
+			}
+		}
+		cout<<"["<<finalW[0]<<","<<finalW[1]<<"] "<<stateW.top()<<endl;
 	}
 }

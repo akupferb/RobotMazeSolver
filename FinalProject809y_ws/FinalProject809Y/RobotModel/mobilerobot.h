@@ -1,11 +1,10 @@
 /**
  * @class MobileRobot
- * @author Jagadesh Nischal, Raja Iskala, Bharat Mathur, Ari Kupferberg,Brenda Scheufele
- * @date 12/05/2019
+ * @author Ari Kupferberg, Bharat Mathur, Brenda Scheufele, Jagadesh Nagireddi, Raja Iskala
+ * @date 20/05/19
  * @file MobileRobot.h
- * @brief This file describes Mobile Robot class which defines the robot model and its methods. This is an abstract class.
+ * @brief This header file defines the MobileRobot class and its associated data members and methods. This is an abstract class.
  */
-
 #pragma once
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
@@ -26,53 +25,72 @@ private:
 	char wrong_turn; // X or Y
 	friend class Maze;
 public:
-	std::stack<char> state_stack;
-	// Setters & Getters
+	std::stack<char> state_stack; ///< Stack variable of type character for the list of robot states
+	/**
+	 * @brief This is a pure virtual method definition for a setter for the target position
+	 */
 	virtual void setTargetLoc(std::vector<int>) = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a setter for the robot current position
+	 */
 	virtual void setRobotLoc(std::vector<int>) = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot name
+	 */
 	virtual std::string getName() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot start position
+	 */
 	virtual std::vector<int> getStart() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot current position
+	 */
 	virtual std::vector<int> getRobotLoc() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot's target position
+	 */
 	virtual std::vector<int> getTargetLoc() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot start marker
+	 */
 	virtual char getStartMarker() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot path marker
+	 */
 	virtual char getVisitedMarker() = 0;
+	/**
+	 * @brief This is a pure virtual method definition for a getter for the robot backtracking marker
+	 */
 	virtual char getWrongTurnMarker() = 0;
-//	// Methods
+	/**
+	 * @brief This is a pure virtual method definition for checking the validity of the target position
+	 */
 	virtual std::vector<int> checkTarget(std::vector<int>) = 0;
-		/**
-	 * @brief This is a pure virtual method which define the action 'UP' of the robots.
-	 * @params Current position of the robot as x and y.
-	 * @return vector consisting of the new co-ordinates for the robot to move
+	/**
+	 * @brief This is a pure virtual method definition for obtaining the 'UP' position for the robots
 	 */
 	virtual std::vector<int> Up(int,int)=0;
-		/**
-	 * @brief This is a pure virtual method which define the action 'DOWN' of the robots.
-	 * @params Current position of the robot as x and y.
-	 * @return vector consisting of the new co-ordinates for the robot to move
+	/**
+	 * @brief This is a pure virtual method definition for obtaining the 'DOWN' position for the robots
 	 */
 	virtual std::vector<int> Down(int,int)=0;
-		/**
-	 * @brief This is a pure virtual method which define the action 'RIGHT' of the robots.
-	 * @params Current position of the robot as x and y.
-	 * @return vector consisting of the new co-ordinates for the robot to move
+	/**
+	 * @brief This is a pure virtual method definition for obtaining the 'RIGHT' position for the robots
 	 */
 	virtual std::vector<int> Right(int,int)=0;
-		/**
-	 * @brief This is a pure virtual method which define the action 'LEFT' of the robots.
-	 * @params Current position of the robot as x and y.
-	 * @return vector consisting of the new co-ordinates for the robot to move
+	/**
+	 * @brief This is a pure virtual method definition for obtaining the 'LEFT' position for the robots
 	 */
 	virtual std::vector<int> Left(int,int)=0;
-		/**
-	 * @brief This is a virtual method definition which pushes the current robot state to the stack.
+	/**
+	 * @brief This is a pure virtual method definition for updating the stack with the robot state
 	*/
 	virtual void update(std::string) = 0;
-		/**
-	 * @brief This is a virtual method definition which displays the robot states from the stack.
+	
+	/**
+	* @brief This function reverses the list of robot states in the stack
+	* @param state_stack The stack of robot states
+	* @return The reversed stack of robot states
 	*/
-	void showStack(std::stack <char>);
-		/**
-	 * @brief This is a destructor for the Mobile Robot class.
-	 */
-	virtual ~MobileRobot(){};
+	std::stack<char> reverseStack(std::stack <char>);
 };

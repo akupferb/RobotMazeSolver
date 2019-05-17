@@ -1,9 +1,9 @@
 /**
  * @class Maze
- * @file maze.h
  * @author Ari Kupferberg, Bharat Mathur, Brenda Scheufele, Jagadesh Nagireddi, Raja Iskala
  * @date 20/05/19
- * @brief This header file defines the Maze class and its associated functions
+ * @file maze.h
+ * @brief This header file defines the Maze class and its associated data members and methods
  */
 #pragma once
 #include "Target/Targets.h"
@@ -61,8 +61,7 @@ public:
 	
 	/**
 	* @brief This function checks if the input position is blocked by an obstacle of some sort
-	* @param x The x position index
-	* @param y The y position index
+	* @param x,y The 2D coordinates of position
 	* @param robot A pointer to the robot in question
 	* @return Boolean
 	*/
@@ -78,8 +77,7 @@ public:
 	
 	/**
 	* @brief This function iteratively checks if the input is a valid open position in the maze
-	* @param start_x x index
-	* @param start_y y index
+	* @param x,y The 2D coordinates of position
 	* @return Vector of confirmed position
 	*/
 	std::vector<int> isInputValid(int, int);
