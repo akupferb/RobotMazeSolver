@@ -1,3 +1,11 @@
+/**
+ * @class MobileRobot
+ * @author Jagadesh Nischal, Raja Iskala, Bharat Mathur, Ari Kupferberg,Brenda Scheufele
+ * @date 12/05/2019
+ * @file MobileRobot.h
+ * @brief This file describes Mobile Robot class which defines the robot model and its methods. This is an abstract class.
+ */
+
 #pragma once
 #include "Maze/Maze.h"
 #include "Target/Targets.h"
@@ -31,12 +39,40 @@ public:
 	virtual char getWrongTurnMarker() = 0;
 //	// Methods
 	virtual std::vector<int> checkTarget(std::vector<int>) = 0;
+		/**
+	 * @brief This is a pure virtual method which define the action 'UP' of the robots.
+	 * @params Current position of the robot as x and y.
+	 * @return vector consisting of the new co-ordinates for the robot to move
+	 */
 	virtual std::vector<int> Up(int,int)=0;
+		/**
+	 * @brief This is a pure virtual method which define the action 'DOWN' of the robots.
+	 * @params Current position of the robot as x and y.
+	 * @return vector consisting of the new co-ordinates for the robot to move
+	 */
 	virtual std::vector<int> Down(int,int)=0;
+		/**
+	 * @brief This is a pure virtual method which define the action 'RIGHT' of the robots.
+	 * @params Current position of the robot as x and y.
+	 * @return vector consisting of the new co-ordinates for the robot to move
+	 */
 	virtual std::vector<int> Right(int,int)=0;
+		/**
+	 * @brief This is a pure virtual method which define the action 'LEFT' of the robots.
+	 * @params Current position of the robot as x and y.
+	 * @return vector consisting of the new co-ordinates for the robot to move
+	 */
 	virtual std::vector<int> Left(int,int)=0;
-	
+		/**
+	 * @brief This is a virtual method definition which pushes the current robot state to the stack.
+	*/
 	virtual void update(std::string) = 0;
+		/**
+	 * @brief This is a virtual method definition which displays the robot states from the stack.
+	*/
 	void showStack(std::stack <char>);
+		/**
+	 * @brief This is a destructor for the Mobile Robot class.
+	 */
 	virtual ~MobileRobot(){};
 };
