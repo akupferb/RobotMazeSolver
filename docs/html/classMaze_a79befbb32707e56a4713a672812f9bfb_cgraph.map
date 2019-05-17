@@ -1,0 +1,4 @@
+<map id="Maze::isObstacle" name="Maze::isObstacle">
+<area shape="rect" id="node2" href="$classMobileRobot.html#a415bbecd377a0dc6c9eebf23dc6e018d" title="This is a pure virtual method definition for a getter for the robot path marker. " alt="" coords="177,5,379,32"/>
+<area shape="rect" id="node3" href="$classMobileRobot.html#a6669d41faff0d7f1c6f35683f7194be5" title="This is a pure virtual method definition for a getter for the robot backtracking marker. " alt="" coords="185,57,371,98"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="WheeledRobot::checkTarget" name="WheeledRobot::checkTarget">
+<area shape="rect" id="node2" href="$classWheeledRobot.html#a27536358e9df23a346bad24be14cba19" title="This is an override getter for the robot&#39;s start position. " alt="" coords="256,5,419,32"/>
+<area shape="rect" id="node3" href="$classWheeledRobot.html#a99b1353322649db6913fdd6dce4bae8a" title="This is an override setter for the robot&#39;s target. " alt="" coords="241,56,433,83"/>
+</map>

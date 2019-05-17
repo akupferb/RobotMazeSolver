@@ -1,0 +1,4 @@
+<map id="TrackedRobot::checkTarget" name="TrackedRobot::checkTarget">
+<area shape="rect" id="node2" href="$classTrackedRobot.html#adfd014aa1ac299f9ad9853a9b2e88453" title="This is an override getter for the robot&#39;s start position. " alt="" coords="252,5,411,32"/>
+<area shape="rect" id="node3" href="$classTrackedRobot.html#a3955b779a27e834391ee90279285e606" title="This is an override setter for the robot&#39;s target. " alt="" coords="237,56,425,83"/>
+</map>
