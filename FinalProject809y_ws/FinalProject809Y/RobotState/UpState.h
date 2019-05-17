@@ -5,7 +5,6 @@
  * @file UpState.h
  * @brief This header file defines the UpState class and its associated data members and methods. It is a derived class from RobotState.
  */
- 
 #ifndef UPSTATE_H
 #define UPSTATE_H
 #include "RobotState.h"
@@ -20,7 +19,6 @@ public:
 	 * @return None
 	*/
 	virtual void update(std::stack<char>&) override;
-	virtual ~UpState(){};
 };
 
 #endif // UPSTATE_H

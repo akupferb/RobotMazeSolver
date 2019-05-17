@@ -28,28 +28,28 @@ std::vector<int> TrackedRobot::checkTarget(std::vector<int> goal) {
 	return goal;
 }
 
-std::vector<int> TrackedRobot::Up(int x,int y){
+std::vector<int> TrackedRobot::Up(int x, int y){
 	x=x-1;
 	y=y;
 	std::vector<int> up{x,y};
 	return up;
 }
 
-std::vector<int> TrackedRobot::Down(int x,int y){
+std::vector<int> TrackedRobot::Down(int x, int y){
 	x=x+1;
 	y=y;
 	std::vector<int> down{x,y};
 	return down;
 } 
 
-std::vector<int> TrackedRobot::Right(int x,int y){
+std::vector<int> TrackedRobot::Right(int x, int y){
 	x=x;
 	y=y+1;
 	std::vector<int> right{x,y};
 	return right;
 }
 
-std::vector<int> TrackedRobot::Left(int x,int y){
+std::vector<int> TrackedRobot::Left(int x, int y){
 	x=x;
 	y=y-1;
 	std::vector<int> left{x,y};

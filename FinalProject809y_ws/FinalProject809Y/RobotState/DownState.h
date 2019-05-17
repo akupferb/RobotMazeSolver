@@ -5,7 +5,6 @@
  * @file DownState.h
  * @brief This header file defines the DownState class and its associated data members and methods. It is a derived class from RobotState.
  */
- 
 #ifndef DOWNSTATE_H
 #define DOWNSTATE_H
 #include "RobotState.h"
@@ -20,7 +19,6 @@ public:
 	 * @return None
 	*/
 	virtual void update(std::stack<char>&) override;
-	virtual ~DownState(){};
 };
 
 #endif // DOWNSTATE_H 

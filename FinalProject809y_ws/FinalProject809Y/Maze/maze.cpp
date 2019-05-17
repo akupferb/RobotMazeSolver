@@ -140,6 +140,10 @@ void Maze::displayMaze() {
 	}
 	cout << "0 1 2 3 4 5";
 	cout << endl;
+	
+	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
+	cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
+	cout << "'b' = bottle target\n'p' = plate target\n" << endl;
 }
 
 std::vector<int> Maze::numericInputs() {

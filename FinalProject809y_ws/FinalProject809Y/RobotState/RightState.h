@@ -5,8 +5,6 @@
  * @file RightState.h
  * @brief This header file defines the RightState class and its associated data members and methods. It is a derived class from RobotState.
  */
-
-
 #ifndef RIGHTSTATE_H
 #define RIGHTSTATE_H
 #include "RobotState.h"
@@ -21,7 +19,6 @@ public:
 	 * @return None
 	*/
 	virtual void update(std::stack<char>&) override;
-	virtual ~RightState(){};
 };
 
 #endif // RIGHTSTATE_H 
