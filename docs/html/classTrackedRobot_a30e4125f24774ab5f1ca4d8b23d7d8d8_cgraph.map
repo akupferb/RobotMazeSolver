@@ -7,4 +7,5 @@
 <area shape="rect" id="node9" href="$classTrackedRobot.html#aeb53a1764841eb568c15a5f878857dc5" title="This function pushes the current robot state to the top of the stack. " alt="" coords="265,284,415,311"/>
 <area shape="rect" id="node3" href="$classTrackedRobot.html#adfd014aa1ac299f9ad9853a9b2e88453" title="This is an override getter for the robot&#39;s start position. " alt="" coords="495,5,653,32"/>
 <area shape="rect" id="node4" href="$classTrackedRobot.html#a3955b779a27e834391ee90279285e606" title="This is an override setter for the robot&#39;s target. " alt="" coords="480,56,668,83"/>
+<area shape="rect" id="node10" href="$classRobotState.html#ae2b0c492d864f1ac10071ba972569fef" title="This is a pure virtual method definition for updating the stack with the robot state. " alt="" coords="507,284,641,311"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="RobotState" name="RobotState">
+<area shape="rect" id="node2" href="$classDownState.html" title="{DownState\n||+ update()\l}" alt="" coords="5,145,92,223"/>
+<area shape="rect" id="node3" href="$classLeftState.html" title="{LeftState\n||+ update()\l}" alt="" coords="116,145,197,223"/>
+<area shape="rect" id="node4" href="$classRightState.html" title="{RightState\n||+ update()\l}" alt="" coords="221,145,305,223"/>
+<area shape="rect" id="node5" href="$classUpState.html" title="{UpState\n||+ update()\l}" alt="" coords="329,145,411,223"/>
+</map>

@@ -1,2 +1,7 @@
 <map id="RobotModel/mobilerobot.cpp" name="RobotModel/mobilerobot.cpp">
+<area shape="rect" id="node5" href="$UpState_8h.html" title="This header file defines the UpState class and its associated data members and methods. It is a derived class from RobotState. " alt="" coords="719,80,870,107"/>
+<area shape="rect" id="node6" href="$RobotState_8h.html" title="This header file defines the RobotState class and its associated data members and methods..." alt="" coords="751,155,849,181"/>
+<area shape="rect" id="node9" href="$DownState_8h.html" title="This header file defines the DownState class and its associated data members and methods. It is a derived class from RobotState. " alt="" coords="895,80,1063,107"/>
+<area shape="rect" id="node10" href="$LeftState_8h.html" title="This header file defines the LeftState class and its associated data members and methods. It is a derived class from RobotState. " alt="" coords="1087,80,1243,107"/>
+<area shape="rect" id="node11" href="$RightState_8h.html" title="This header file defines the RightState class and its associated data members and methods..." alt="" coords="479,80,644,107"/>
 </map>

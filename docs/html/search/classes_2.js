@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wheeledrobot',['WheeledRobot',['../classWheeledRobot.html',1,'']]]
+  ['maze',['Maze',['../classMaze.html',1,'']]],
+  ['mobilerobot',['MobileRobot',['../classMobileRobot.html',1,'']]]
 ];

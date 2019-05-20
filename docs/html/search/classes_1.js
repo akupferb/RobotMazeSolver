@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['targets',['Targets',['../classTargets.html',1,'']]],
-  ['trackedrobot',['TrackedRobot',['../classTrackedRobot.html',1,'']]]
+  ['leftstate',['LeftState',['../classLeftState.html',1,'']]]
 ];
