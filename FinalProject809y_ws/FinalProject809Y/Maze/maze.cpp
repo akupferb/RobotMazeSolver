@@ -17,7 +17,7 @@ Maze::Maze() {
 bool Maze::isObstacle(int x, int y, MobileRobot* robot) {
 	if ( maze_arr[x][y] == '#' || maze_arr[x][y] == robot->getWrongTurnMarker() || maze_arr[x][y] == robot->getVisitedMarker())
 		return true;
-	if ( maze_arr[x][y] == '+' || maze_arr[x][y] == 'T' || maze_arr[x][y] == 'Z' || x>=n)
+	if ( maze_arr[x][y] == '+' || maze_arr[x][y] == 'T' || x>=n)
 		return true;
 	return false;
 }
@@ -61,8 +61,6 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 	else if (z=='Y') {
 		if (maze_arr[x][y] == '-' || maze_arr[x][y] == '+')
 			maze_arr[x][y] = 'T';
-		else if (maze_arr[x][y] == 'X')
-			maze_arr[x][y] = 'Z';
 		else 
 			maze_arr[x][y] = z;
 	}
@@ -91,7 +89,7 @@ void Maze::changeSpace(std::vector<int> xy, char z) {
 void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> plate, std::vector<int> bottle) {
 	for (int i=0; i<31; i++) {
 		for (int j=0; j<46; j++) {
-			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y' || maze_arr[i][j] == 'Z')
+			if (maze_arr[i][j] == 'X' || maze_arr[i][j] == 'Y')
 				 maze_arr[i][j] = ' ';
 			if (maze_arr[i][j] == 'T')
 				 maze_arr[i][j] = '-';
@@ -103,7 +101,7 @@ void Maze::rewrite(MobileRobot* robot, MobileRobot* robot2, std::vector<int> pla
 	changeSpace(bottle,'b');
 }
 
-void Maze::displayMaze() {
+void Maze::displayMaze(int q) {
 	cout << "\n    ---";
 	for (int j=0; j<m; ++j)
 		cout << "--";
@@ -141,9 +139,12 @@ void Maze::displayMaze() {
 	cout << "0 1 2 3 4 5";
 	cout << endl;
 	
-	cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
-	cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
-	cout << "'b' = bottle target\n'p' = plate target\n" << endl;
+	if (q == 1) {
+		cout << "Symbols:\n' ' = open\n'#' = blocked\n't' = start for tracked robot\n'w' = start for wheeled robot\n";
+		cout << "'|' = path for wheeled robot\n'-' = path for tracked robot\n'+' = overlapping paths\n";
+		cout << "'b' = bottle target\n'p' = plate target\n";
+	}
+	cout << endl;
 }
 
 std::vector<int> Maze::numericInputs() {

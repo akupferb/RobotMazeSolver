@@ -27,7 +27,7 @@ public:
 	/**
 	* @return Vector of target position
 	*/
-	std::vector<int> getTargetLoc();
+	std::vector<int> getTargetLoc() { return position; }
 	
 	/**
 	* @param pos Position to set for target

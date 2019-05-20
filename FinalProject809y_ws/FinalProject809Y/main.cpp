@@ -80,7 +80,7 @@ int main()
 {
 	Maze maze; // Initialize a maze of 'Maze' Class
 	Maze* maze_pointer = &maze; // Initialize a pointer to the maze
-	maze.displayMaze();
+	maze.displayMaze(0);
 	TrackedRobot tracked_robot(maze_pointer); // Initialize a robot of 'TrackedRobot' Class
 	MobileRobot *tracked_pointer = &tracked_robot; // Initialize a pointer to the tracked robot
 	WheeledRobot wheeled_robot(maze_pointer); // Initialize a robot of 'WheeledRobot' Class
@@ -101,7 +101,7 @@ int main()
 	displayPath(positionsTracked, positionsWheeled, posSizeTracked, posSizeWheeled, tracked_stack, wheeled_stack);
 	// Remove WrongTurns from Maze, and display maze and paths taken:
 	maze.rewrite(tracked_pointer,wheeled_pointer,plate.getTargetLoc(),bottle.getTargetLoc());
-	maze.displayMaze();
+	maze.displayMaze(1);
 	return 0;
 }
 
@@ -193,38 +193,38 @@ stack<char> findPath(Maze* maze, MobileRobot* robot, MobileRobot* robot2, vector
 }
 
 
-void displayPath(vector<vector<int>> pastT, vector<vector<int>> pastW, int sizeT, int sizeW, stack<char> stateT, stack<char> stateW) {
-	// Loops through all past positions to display direct maze path
+void displayPath(vector<vector<int>> posT, vector<vector<int>> posW, int sizeT, int sizeW, stack<char> stateT, stack<char> stateW) {
+	// Loops through all pos positions to display direct maze path
 	if (sizeW == 0) {
 		cout << "\nThe maze path for the tracked robot is:\n";
-		for (int i=1; i<sizeT; ++i) { cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<endl; stateT.pop(); }
+		for (int i=1; i<sizeT; ++i) { cout<<"["<<posT[i][0]<<","<<posT[i][1]<<"] "<<stateT.top()<<endl; stateT.pop(); }
 	}
 	else if (sizeT == 0) {
 		cout << "\nThe maze path for the wheeled robot is:\n";
-		for (int i=1; i<sizeW; ++i) { cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<endl; stateW.pop(); }
+		for (int i=1; i<sizeW; ++i) { cout<<"["<<posW[i][0]<<","<<posW[i][1]<<"] "<<stateW.top()<<endl; stateW.pop(); }
 	}
 	else if (sizeT >= sizeW) {
 		cout << "\nThe maze paths for the tracked and wheeled robots, respectively, are:\n  t          w\n";
-		cout<<"["<<pastT[0][0]<<","<<pastT[0][1]<<"]    ["<<pastW[0][0]<<","<<pastW[0][1]<<"] "<<endl;
+		cout<<"["<<posT[0][0]<<","<<posT[0][1]<<"]    ["<<posW[0][0]<<","<<posW[0][1]<<"] "<<endl;
 		for (int i=1; i<sizeT; ++i) {
 			if (i<sizeW) {
-				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<"  ["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<endl;
+				cout<<"["<<posT[i][0]<<","<<posT[i][1]<<"] "<<stateT.top()<<"  ["<<posW[i][0]<<","<<posW[i][1]<<"] "<<stateW.top()<<endl;
 				stateT.pop(); stateW.pop();
 			} else {
-				cout<<"["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<endl;
+				cout<<"["<<posT[i][0]<<","<<posT[i][1]<<"] "<<stateT.top()<<endl;
 				stateT.pop();
 			}
 		}
 	}
 	else if (sizeW > sizeT) {
 		cout << "\nThe maze paths for the wheeled and tracked robots, respectively, are:\n  w          t\n";
-		cout<<"["<<pastW[0][0]<<","<<pastW[0][1]<<"]    ["<<pastT[0][0]<<","<<pastT[0][1]<<"] "<<endl;
+		cout<<"["<<posW[0][0]<<","<<posW[0][1]<<"]    ["<<posT[0][0]<<","<<posT[0][1]<<"] "<<endl;
 		for (int i=1; i<sizeW; ++i) {
 			if (i<sizeT) {
-				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<"  ["<<pastT[i][0]<<","<<pastT[i][1]<<"] "<<stateT.top()<<endl;
+				cout<<"["<<posW[i][0]<<","<<posW[i][1]<<"] "<<stateW.top()<<"  ["<<posT[i][0]<<","<<posT[i][1]<<"] "<<stateT.top()<<endl;
 				stateW.pop(); stateT.pop();
 			} else {
-				cout<<"["<<pastW[i][0]<<","<<pastW[i][1]<<"] "<<stateW.top()<<endl;
+				cout<<"["<<posW[i][0]<<","<<posW[i][1]<<"] "<<stateW.top()<<endl;
 				stateW.pop();
 			}
 		}

@@ -9,7 +9,3 @@ Targets::Targets() {}
 Targets::Targets(std::vector<int> vec) {
 	position = vec;
 }
-
-std::vector<int> Targets::getTargetLoc() {
-  return position;
-}

@@ -55,9 +55,10 @@ public:
 
 	/**
 	* @brief This function uses a series of loops to display the maze with borders and numbering
+	* @param q Choice integer
 	* @return None
 	*/
-	void displayMaze();
+	void displayMaze(int);
 	
 	/**
 	* @brief This function checks if the input position is blocked by an obstacle of some sort
