@@ -13,7 +13,7 @@
 
 class Targets {
 private:
-	std::vector<int> position;
+	std::vector<int> position; ///< position of the target
 	friend class Maze;
 
 public:
