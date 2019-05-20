@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['left',['Left',['../classMobileRobot.html#a7c22608d39dd8c6cb04c21d724806a73',1,'MobileRobot::Left()'],['../classTrackedRobot.html#a4aca4abdae309b2fdd9c3844a168f303',1,'TrackedRobot::Left()'],['../classWheeledRobot.html#a11daf216ffb79c1bf98333d978be50fe',1,'WheeledRobot::Left()']]]
+  ['isgoal',['isGoal',['../classMaze.html#ae4ed2cfd750993f1aac2d462956d4d63',1,'Maze']]],
+  ['isinputvalid',['isInputValid',['../classMaze.html#a564b0a934b1250e67537485c2914913d',1,'Maze']]],
+  ['isobstacle',['isObstacle',['../classMaze.html#a79befbb32707e56a4713a672812f9bfb',1,'Maze']]]
 ];

@@ -1,3 +1,4 @@
 <map id="MobileRobot::getStart" name="MobileRobot::getStart">
 <area shape="rect" id="node2" href="$classMaze.html#a5f30e29df80d74bb72a455ac6872c131" title="This function cleans up the wrong turn markers found in the maze from backtracking. " alt="" coords="203,5,304,32"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="This is the main function. " alt="" coords="352,5,403,32"/>
 </map>

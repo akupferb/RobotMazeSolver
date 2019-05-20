@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['isgoal',['isGoal',['../classMaze.html#ae4ed2cfd750993f1aac2d462956d4d63',1,'Maze']]],
-  ['isinputvalid',['isInputValid',['../classMaze.html#a564b0a934b1250e67537485c2914913d',1,'Maze']]],
-  ['isobstacle',['isObstacle',['../classMaze.html#a79befbb32707e56a4713a672812f9bfb',1,'Maze']]]
+  ['getname',['getName',['../classMobileRobot.html#a4af1de4489cc6eefd2d551cda8a4a8b8',1,'MobileRobot::getName()'],['../classTrackedRobot.html#aca99c5efe84e2bfe5bb64d03a1958093',1,'TrackedRobot::getName()'],['../classWheeledRobot.html#a79f0f0a2646a1ad0c09d7e55371cd0bf',1,'WheeledRobot::getName()']]],
+  ['getrobotloc',['getRobotLoc',['../classMobileRobot.html#a984421c402e2ca7f65af4416cee555f8',1,'MobileRobot::getRobotLoc()'],['../classTrackedRobot.html#aeea44e85ed26485e853f78b49b563a87',1,'TrackedRobot::getRobotLoc()'],['../classWheeledRobot.html#a5381fad382b72641d005596eae0caa22',1,'WheeledRobot::getRobotLoc()']]],
+  ['getstart',['getStart',['../classMobileRobot.html#a7915b1abb7dd916ff4109b22b0b6ad97',1,'MobileRobot::getStart()'],['../classTrackedRobot.html#adfd014aa1ac299f9ad9853a9b2e88453',1,'TrackedRobot::getStart()'],['../classWheeledRobot.html#a27536358e9df23a346bad24be14cba19',1,'WheeledRobot::getStart()']]],
+  ['getstartmarker',['getStartMarker',['../classMobileRobot.html#aa5d13a5123e317c06baf86efd5074845',1,'MobileRobot::getStartMarker()'],['../classTrackedRobot.html#a1968ead81e100c8e2e7fcc31f53a890d',1,'TrackedRobot::getStartMarker()'],['../classWheeledRobot.html#a573f6e547728885b7e0687359933c462',1,'WheeledRobot::getStartMarker()']]],
+  ['gettargetloc',['getTargetLoc',['../classMobileRobot.html#ae195dd663874169ff576a7f6a9f3b2a3',1,'MobileRobot::getTargetLoc()'],['../classTrackedRobot.html#a2228557ec912ce3333661bbcbf1f4ff8',1,'TrackedRobot::getTargetLoc()'],['../classWheeledRobot.html#aea349cc09b0529957d2af7608e29f65a',1,'WheeledRobot::getTargetLoc()'],['../classTargets.html#a62e90c44b566f90d349323de0882deb4',1,'Targets::getTargetLoc()']]],
+  ['getvisitedmarker',['getVisitedMarker',['../classMobileRobot.html#a415bbecd377a0dc6c9eebf23dc6e018d',1,'MobileRobot::getVisitedMarker()'],['../classTrackedRobot.html#ad27b71ded9edfa15c9731c3f28a8de04',1,'TrackedRobot::getVisitedMarker()'],['../classWheeledRobot.html#a1f596457379d527948a897458c1f8016',1,'WheeledRobot::getVisitedMarker()']]],
+  ['getwrongturnmarker',['getWrongTurnMarker',['../classMobileRobot.html#a6669d41faff0d7f1c6f35683f7194be5',1,'MobileRobot::getWrongTurnMarker()'],['../classTrackedRobot.html#a30e4125f24774ab5f1ca4d8b23d7d8d8',1,'TrackedRobot::getWrongTurnMarker()'],['../classWheeledRobot.html#a47abd268ce6b5acbbf501f7f3950da05',1,'WheeledRobot::getWrongTurnMarker()']]]
 ];

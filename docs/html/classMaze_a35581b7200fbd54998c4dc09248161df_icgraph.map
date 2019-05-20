@@ -1,4 +1,5 @@
 <map id="Maze::numericInputs" name="Maze::numericInputs">
-<area shape="rect" id="node2" href="$classTrackedRobot.html#a3362c62d72def4acb98814a27a012812" title="This is a 1 args constructor. " alt="" coords="201,5,396,32"/>
-<area shape="rect" id="node3" href="$classWheeledRobot.html#aad78bec9f1339ca893ff618836491af0" title="This is a 1 args constructor. " alt="" coords="197,56,400,83"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="This is the main function. " alt="" coords="273,5,324,32"/>
+<area shape="rect" id="node3" href="$classTrackedRobot.html#a3362c62d72def4acb98814a27a012812" title="This is a 1 args constructor. " alt="" coords="201,56,396,83"/>
+<area shape="rect" id="node4" href="$classWheeledRobot.html#aad78bec9f1339ca893ff618836491af0" title="This is a 1 args constructor. " alt="" coords="197,107,400,133"/>
 </map>

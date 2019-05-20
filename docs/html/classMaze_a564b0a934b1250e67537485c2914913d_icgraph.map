@@ -1,5 +1,7 @@
 <map id="Maze::isInputValid" name="Maze::isInputValid">
-<area shape="rect" id="node2" href="$classMaze.html#a35581b7200fbd54998c4dc09248161df" title="This function checks that all inputs are valid numbers. " alt="" coords="184,31,328,57"/>
-<area shape="rect" id="node3" href="$classTrackedRobot.html#a3362c62d72def4acb98814a27a012812" title="This is a 1 args constructor. " alt="" coords="380,5,575,32"/>
-<area shape="rect" id="node4" href="$classWheeledRobot.html#aad78bec9f1339ca893ff618836491af0" title="This is a 1 args constructor. " alt="" coords="376,56,579,83"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#a9d05292a895cdfe34d8ff46541e62391" title="This function links each robot to its assigned target. " alt="" coords="203,5,309,32"/>
+<area shape="rect" id="node4" href="$classMaze.html#a35581b7200fbd54998c4dc09248161df" title="This function checks that all inputs are valid numbers. " alt="" coords="184,56,328,83"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="This is the main function. " alt="" coords="452,5,503,32"/>
+<area shape="rect" id="node5" href="$classTrackedRobot.html#a3362c62d72def4acb98814a27a012812" title="This is a 1 args constructor. " alt="" coords="380,56,575,83"/>
+<area shape="rect" id="node6" href="$classWheeledRobot.html#aad78bec9f1339ca893ff618836491af0" title="This is a 1 args constructor. " alt="" coords="376,107,579,133"/>
 </map>

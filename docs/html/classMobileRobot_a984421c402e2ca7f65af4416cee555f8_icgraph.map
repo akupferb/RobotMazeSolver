@@ -1,3 +1,5 @@
 <map id="MobileRobot::getRobotLoc" name="MobileRobot::getRobotLoc">
-<area shape="rect" id="node2" href="$classMaze.html#ae4ed2cfd750993f1aac2d462956d4d63" title="This function compares the robot position to its target goal. " alt="" coords="231,5,329,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#aea66bf7b8458f5c070ac940493a0447d" title="This function runs the search algorithm for the robot. " alt="" coords="377,5,448,32"/>
+<area shape="rect" id="node4" href="$classMaze.html#ae4ed2cfd750993f1aac2d462956d4d63" title="This function compares the robot position to its target goal. " alt="" coords="231,31,329,57"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="This is the main function. " alt="" coords="496,5,547,32"/>
 </map>

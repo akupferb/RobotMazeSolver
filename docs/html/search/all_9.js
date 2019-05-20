@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['reversestack',['reverseStack',['../classMobileRobot.html#aef4aed1b16e401ed6c371b37e90666a4',1,'MobileRobot']]],
-  ['rewrite',['rewrite',['../classMaze.html#a5f30e29df80d74bb72a455ac6872c131',1,'Maze']]],
-  ['right',['Right',['../classMobileRobot.html#ae1f1669e14e032130805056bab151949',1,'MobileRobot::Right()'],['../classTrackedRobot.html#ad7b4ae1ef658345d4fac11094f594621',1,'TrackedRobot::Right()'],['../classWheeledRobot.html#a5cec3a07dd40e90f46188607ebebe1a4',1,'WheeledRobot::Right()']]]
+  ['position',['position',['../classTargets.html#a2e5c002c0c682d81ae66d8677e3e3088',1,'Targets']]],
+  ['positionstracked',['positionsTracked',['../main_8cpp.html#a0eefd3b9c491290c20c9e04414f05f43',1,'main.cpp']]],
+  ['positionswheeled',['positionsWheeled',['../main_8cpp.html#a1da7e1d2b7e8fbc6b2a80ef6a8b30de1',1,'main.cpp']]],
+  ['possizetracked',['posSizeTracked',['../main_8cpp.html#aeb7799e50329db7ccbf6f37fb85a40e8',1,'main.cpp']]],
+  ['possizewheeled',['posSizeWheeled',['../main_8cpp.html#ab0f14d93b515053a0cd79ab5f91f140d',1,'main.cpp']]]
 ];

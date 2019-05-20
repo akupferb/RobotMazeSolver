@@ -1,3 +1,5 @@
 <map id="MobileRobot::getWrongTurnMarker" name="MobileRobot::getWrongTurnMarker">
-<area shape="rect" id="node2" href="$classMaze.html#a79befbb32707e56a4713a672812f9bfb" title="This function checks if the input position is blocked by an obstacle of some sort. " alt="" coords="239,13,363,39"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#aea66bf7b8458f5c070ac940493a0447d" title="This function runs the search algorithm for the robot. " alt="" coords="411,13,481,39"/>
+<area shape="rect" id="node4" href="$classMaze.html#a79befbb32707e56a4713a672812f9bfb" title="This function checks if the input position is blocked by an obstacle of some sort. " alt="" coords="239,38,363,65"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="This is the main function. " alt="" coords="529,13,580,39"/>
 </map>

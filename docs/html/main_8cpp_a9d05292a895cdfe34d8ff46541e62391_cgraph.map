@@ -1,0 +1,7 @@
+<map id="connectTarget" name="connectTarget">
+<area shape="rect" id="node2" href="$classMobileRobot.html#a67a50191e60afc5b6ec53929fddaad30" title="This is a pure virtual method definition for checking the validity of the target position. " alt="" coords="161,5,335,32"/>
+<area shape="rect" id="node3" href="$classTargets.html#a62e90c44b566f90d349323de0882deb4" title="Targets::getTargetLoc" alt="" coords="173,56,323,83"/>
+<area shape="rect" id="node4" href="$classMaze.html#a564b0a934b1250e67537485c2914913d" title="This function iteratively checks if the input is a valid open position in the maze. " alt="" coords="183,107,313,133"/>
+<area shape="rect" id="node5" href="$classMobileRobot.html#ac9c2de0e8bf08f0ac2ddc15062c66b9b" title="This is a pure virtual method definition for a setter for the target position. " alt="" coords="159,157,337,184"/>
+<area shape="rect" id="node6" href="$classTargets.html#a1efe0ddf6ff8c45a2a3d05db18ff8829" title="Targets::setTargetLoc" alt="" coords="173,208,323,235"/>
+</map>
