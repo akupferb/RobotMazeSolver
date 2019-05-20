@@ -1,13 +1,13 @@
 <map id="main" name="main">
 <area shape="rect" id="node2" href="$main_8cpp.html#a9d05292a895cdfe34d8ff46541e62391" title="This function links each robot to its assigned target. " alt="" coords="123,107,229,133"/>
-<area shape="rect" id="node8" href="$classMaze.html#a08a79bdecc66aea4fd56ae984211888a" title="This function uses a series of loops to display the maze with borders and numbering. " alt="" coords="109,157,243,184"/>
+<area shape="rect" id="node8" href="$classMaze.html#ace53cecb0807ee0da2138336573676bf" title="This function uses a series of loops to display the maze with borders and numbering. " alt="" coords="109,157,243,184"/>
 <area shape="rect" id="node9" href="$main_8cpp.html#ae895281bdc9f93b22c4690f4178eba0d" title="This function displays the indices and directions of the paths taken by both robots. " alt="" coords="131,208,221,235"/>
 <area shape="rect" id="node10" href="$main_8cpp.html#aea66bf7b8458f5c070ac940493a0447d" title="This function runs the search algorithm for the robot. " alt="" coords="141,588,211,615"/>
 <area shape="rect" id="node15" href="$classMobileRobot.html#ae195dd663874169ff576a7f6a9f3b2a3" title="This is a pure virtual method definition for a getter for the robot&#39;s target position. " alt="" coords="301,259,480,285"/>
 <area shape="rect" id="node26" href="$classMaze.html#a35581b7200fbd54998c4dc09248161df" title="This function checks that all inputs are valid numbers. " alt="" coords="104,259,248,285"/>
 <area shape="rect" id="node27" href="$classMaze.html#a5f30e29df80d74bb72a455ac6872c131" title="This function cleans up the wrong turn markers found in the maze from backtracking. " alt="" coords="125,993,227,1020"/>
 <area shape="rect" id="node3" href="$classMobileRobot.html#a67a50191e60afc5b6ec53929fddaad30" title="This is a pure virtual method definition for checking the validity of the target position. " alt="" coords="303,5,478,32"/>
-<area shape="rect" id="node4" href="$classTargets.html#a62e90c44b566f90d349323de0882deb4" title="Targets::getTargetLoc" alt="" coords="315,56,466,83"/>
+<area shape="rect" id="node4" href="$classTargets.html#ac623f68867010c78382fa69252f66a1a" title="Targets::getTargetLoc" alt="" coords="315,56,466,83"/>
 <area shape="rect" id="node5" href="$classMaze.html#a564b0a934b1250e67537485c2914913d" title="This function iteratively checks if the input is a valid open position in the maze. " alt="" coords="325,208,456,235"/>
 <area shape="rect" id="node6" href="$classMobileRobot.html#ac9c2de0e8bf08f0ac2ddc15062c66b9b" title="This is a pure virtual method definition for a setter for the target position. " alt="" coords="301,107,480,133"/>
 <area shape="rect" id="node7" href="$classTargets.html#a1efe0ddf6ff8c45a2a3d05db18ff8829" title="Targets::setTargetLoc" alt="" coords="315,157,466,184"/>

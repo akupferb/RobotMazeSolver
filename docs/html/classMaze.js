@@ -1,7 +1,7 @@
 var classMaze =
 [
     [ "Maze", "classMaze.html#a7ecf1da4b9685f97bf3110a8479e724b", null ],
-    [ "displayMaze", "classMaze.html#a08a79bdecc66aea4fd56ae984211888a", null ],
+    [ "displayMaze", "classMaze.html#ace53cecb0807ee0da2138336573676bf", null ],
     [ "isObstacle", "classMaze.html#a79befbb32707e56a4713a672812f9bfb", null ],
     [ "isGoal", "classMaze.html#ae4ed2cfd750993f1aac2d462956d4d63", null ],
     [ "isInputValid", "classMaze.html#a564b0a934b1250e67537485c2914913d", null ],

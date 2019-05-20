@@ -17,12 +17,5 @@ var classMobileRobot =
     [ "update", "classMobileRobot.html#a3e4a7e8fa88599095e7500b0a703bf55", null ],
     [ "reverseStack", "classMobileRobot.html#aef4aed1b16e401ed6c371b37e90666a4", null ],
     [ "Maze", "classMobileRobot.html#ac6026f9d8b1ac2b75355f55bb6739dfe", null ],
-    [ "_name", "classMobileRobot.html#a87dc7940bd90425ccc07a641f74ba5f1", null ],
-    [ "target", "classMobileRobot.html#a992852416c23cef917062b660a2bb689", null ],
-    [ "start_position", "classMobileRobot.html#a1ee200a4badde12b2e96fc43193cc4f4", null ],
-    [ "current_position", "classMobileRobot.html#af7f071e611323e6d4fe4c3859aeaafe9", null ],
-    [ "start_marker", "classMobileRobot.html#af623de9b27c0a4956d8f249a214c661d", null ],
-    [ "visited_marker", "classMobileRobot.html#a28879b894382e03d710ba9663087c6ed", null ],
-    [ "wrong_turn", "classMobileRobot.html#aedaeddf8af7516d57fe4826807b6351b", null ],
     [ "state_stack", "classMobileRobot.html#ac49137d5a3bead9e08dd845ab14b14a0", null ]
 ];

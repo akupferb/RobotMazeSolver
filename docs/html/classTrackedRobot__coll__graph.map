@@ -1,7 +1,7 @@
 <map id="TrackedRobot" name="TrackedRobot">
-<area shape="rect" id="node2" href="$classMobileRobot.html" title="{MobileRobot\n|&#45; start_marker\l&#45; visited_marker\l&#45; wrong_turn\l|+ setTargetLoc()\l+ setRobotLoc()\l+ getName()\l+ getStart()\l+ getRobotLoc()\l+ getTargetLoc()\l+ getStartMarker()\l+ getVisitedMarker()\l+ getWrongTurnMarker()\l+ checkTarget()\l+ Up()\l+ Down()\l+ Right()\l+ Left()\l+ update()\l+ reverseStack()\l}" alt="" coords="141,469,305,796"/>
-<area shape="rect" id="node3" title="STL class. " alt="" coords="29,300,109,377"/>
-<area shape="rect" id="node4" title="STL class. " alt="" coords="5,145,132,237"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="293,153,409,230"/>
-<area shape="rect" id="node9" title="STL class. " alt="" coords="157,153,269,230"/>
+<area shape="rect" id="node2" href="$classMobileRobot.html" title="{MobileRobot\n||+ setTargetLoc()\l+ setRobotLoc()\l+ getName()\l+ getStart()\l+ getRobotLoc()\l+ getTargetLoc()\l+ getStartMarker()\l+ getVisitedMarker()\l+ getWrongTurnMarker()\l+ checkTarget()\l+ Up()\l+ Down()\l+ Right()\l+ Left()\l+ update()\l+ reverseStack()\l}" alt="" coords="5,503,169,800"/>
+<area shape="rect" id="node4" title="STL class. " alt="" coords="30,145,142,223"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="167,145,283,223"/>
+<area shape="rect" id="node6" title="STL class. " alt="" coords="347,613,427,690"/>
+<area shape="rect" id="node7" title="STL class. " alt="" coords="324,285,451,377"/>
 </map>
