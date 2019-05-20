@@ -16,13 +16,6 @@
 
 class MobileRobot {
 private:
-	std::string _name;
-	std::vector<int> target;
-	std::vector<int> start_position;
-	std::vector<int> current_position;
-	char start_marker;
-	char visited_marker; // | or -
-	char wrong_turn; // X or Y
 	friend class Maze;
 public:
 	std::stack<char> state_stack; ///< Stack variable of type character for the list of robot states
