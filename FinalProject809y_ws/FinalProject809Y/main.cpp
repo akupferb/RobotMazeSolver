@@ -57,8 +57,8 @@ stack<char> findPath(Maze*, MobileRobot*, MobileRobot*, vector<vector<int>> &, i
 * The function displays the order of moves taken by both robots, showing the longer path on the
 * left by checking the size variables. It also displays the direction of moves made from the stack.
 * It displays the results with related headers.
-* @param pastT A 2D vector of past positions of the Tracked Robot
-* @param pastW A 2D vector of past positions of the Wheeled Robot
+* @param posT A 2D vector of past positions of the Tracked Robot
+* @param posW A 2D vector of past positions of the Wheeled Robot
 * @param sizeT The size of the past positions vector of the Tracked Robot
 * @param sizeW The size of the past positions vector of the Wheeled Robot
 * @param stackT The state stack for the Tracked Robot
